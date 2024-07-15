@@ -6,9 +6,11 @@ import {
   useNavigate,
 } from "react-router-dom";
 import CarouselPage from "./CarouselPage";
-import MenuPage from "./MenuPage";
-import PaymentPage from "./PaymentPage";
-import ReceiptPage from "./ReceiptPage";
+import MenuPage from "./younger/MenuPage";
+import ElderMenuPage from "./elder/ElderMenuPage";
+
+import PaymentPage from "./younger/PaymentPage";
+import ReceiptPage from "./younger/ReceiptPage";
 
 function Kiosk() {
   return (
@@ -16,6 +18,7 @@ function Kiosk() {
       <Router>
         <Routes>
           <Route path="/" element={<CarouselPage />} />
+          <Route path="/eldermenu" element={<ElderMenuPage />} />
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/receipt" element={<ReceiptPage />} />

@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../../components/kiosk/Button";
+import Button from "../../components/common/Button";
 import { Router, Route, Routes, useNavigate } from "react-router-dom";
 
 function CarouselPage() {
