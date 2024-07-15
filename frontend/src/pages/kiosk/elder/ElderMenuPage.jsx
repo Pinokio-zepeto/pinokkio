@@ -13,25 +13,6 @@ function MenuPage() {
   return (
     <div className="MenuPage">
       this is menu-page
-      <div id="layout-container">
-    {localTrack && (
-        <VideoComponent track={localTrack} participantIdentity={participantName} local={true} />
-    )}
-    {remoteTracks.map((remoteTrack) =>
-        remoteTrack.trackPublication.kind === "video" ? (
-            <VideoComponent
-                key={remoteTrack.trackPublication.trackSid}
-                track={remoteTrack.trackPublication.videoTrack!}
-                participantIdentity={remoteTrack.participantIdentity}
-            />
-        ) : (
-            <AudioComponent
-                key={remoteTrack.trackPublication.trackSid}
-                track={remoteTrack.trackPublication.audioTrack!}
-            />
-        )
-    )}
-</div>
       <Menu />
       <Button onClick={goPayment} text="결제" />
     </div>
