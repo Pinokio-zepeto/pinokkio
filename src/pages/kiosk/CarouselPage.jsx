@@ -1,0 +1,25 @@
+import React from "react";
+import Button from "../../components/kiosk/Button";
+import { Router, Route, Routes, useNavigate } from "react-router-dom";
+
+function CarouselPage() {
+  const navigate = useNavigate();
+
+  const havingHere = () => {
+    navigate("/menu", { state: { where: "having here" } });
+  };
+
+  const takeAway = () => {
+    navigate("/menu", { state: { where: "take away" } });
+  };
+
+  return (
+    <div className="CarouselPage">
+      this is carousel-page
+      <Button onClick={havingHere} text="매장" />
+      <Button onClick={takeAway} text="포장" />
+    </div>
+  );
+}
+
+export default CarouselPage;
