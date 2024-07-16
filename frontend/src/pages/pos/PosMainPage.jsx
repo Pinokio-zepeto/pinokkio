@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
-function PosOrderMainPage () {
-    return (
-        <div>
-            This is PosOrderMainPage
-        </div>
-    );
-};
+function PosMainPage() {
+  return <div>This is PosMainPage</div>;
+}
 
-export default PosOrderMainPage;
+export default PosMainPage;

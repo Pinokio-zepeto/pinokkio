@@ -3,7 +3,7 @@ import { Router, Route, Routes, useNavigate } from "react-router-dom";
 import Button from "../../../components/common/Button";
 import Menu from "../../../components/kiosk/Menu";
 
-function MenuPage() {
+function ElderMenuPage() {
   const navigate = useNavigate();
 
   const goPayment = () => {
@@ -19,4 +19,4 @@ function MenuPage() {
   );
 }
 
-export default MenuPage;
+export default ElderMenuPage;
