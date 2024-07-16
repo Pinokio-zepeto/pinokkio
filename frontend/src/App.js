@@ -1,23 +1,25 @@
 import React from "react";
-import { Routes, Route, Router, useRoutes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useRoutes } from "react-router-dom";
 import Login from "./pages/Login";
-import Menu from "./components/kiosk/Menu";
 import Kiosk from "./pages/kiosk/Kiosk";
+import Pos from "./pages/pos/Pos";
 
-// const menuroute = () => {
-//   let routes = useRoutes([
-//     { path: "/", element: <Login /> },
-//     { path: "/about", element: <category /> },
-//     // 다른 라우트 추가
-//   ]);
-//   return routes;
-// };
+const AppRoutes = () => {
+  let routes = useRoutes([
+    { path: "/", element: <Login /> },
+    { path: "/kiosk/*", element: <Kiosk /> },
+    { path: "/pos/*", element: <Pos /> },
+    // 다른 라우트 추가 가능
+  ]);
+  return routes;
+};
 
 function App() {
   return (
     <div className="App">
-      <Kiosk />
-      
+      <Router>
+        <AppRoutes />
+      </Router>
     </div>
   );
 }
