@@ -48,4 +48,4 @@ function PosMainPage() {
   );
 }
 
-export default PosOrderMainPage;
+export default PosMainPage;

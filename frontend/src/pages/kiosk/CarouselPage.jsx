@@ -6,11 +6,11 @@ function CarouselPage() {
   const navigate = useNavigate();
 
   const havingHere = () => {
-    navigate("/menu", { state: { where: "having here" } });
+    navigate("/kiosk/menu", { state: { where: "having here" } });
   };
 
   const takeAway = () => {
-    navigate("/menu", { state: { where: "take away" } });
+    navigate("/kiosk/menu", { state: { where: "take away" } });
   };
 
   return (
