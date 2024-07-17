@@ -20,7 +20,7 @@ import lombok.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "order")
+@Table(name = "customer")
 @Getter
 @Setter(AccessLevel.PROTECTED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
