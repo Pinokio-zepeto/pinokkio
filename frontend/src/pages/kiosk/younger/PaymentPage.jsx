@@ -6,7 +6,7 @@ function PaymentPage() {
   const navigate = useNavigate();
 
   const goReceipt = () => {
-    navigate("/receipt");
+    navigate("/kiosk/receipt");
   };
 
   return (

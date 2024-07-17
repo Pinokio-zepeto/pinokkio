@@ -7,7 +7,7 @@ function MenuPage() {
   const navigate = useNavigate();
 
   const goPayment = () => {
-    navigate("/payment");
+    navigate("/kiosk/payment");
   };
 
   return (
