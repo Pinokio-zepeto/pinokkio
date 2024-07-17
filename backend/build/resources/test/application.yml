@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/pinokkio?serverTimezone=Asia/Seoul
+    username: root
+    password: ssafy!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+  redis:
+    host: localhost
+    port: 6379
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+cloud:
+  aws:
+    s3:
+      bucket: ${BUCKET}
+    credentials:
+      accessKey: ${S3_ACCESS_KEY}
+      secretKey: ${S3_SECRET_KEY}
+    region:
+      static: ${REGION}
+      auto: false
+    stack:
+      auto: false
+
+s3:
+  host:
+    name: https://${BUCKET}.s3.${REGION}.amazonaws.com/
