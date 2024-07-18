@@ -44,6 +44,7 @@ function MenuModal({ itemName, cartItems, setCartItems, setModal }) {
       {
         itemName: itemName,
         itemCount: count,
+        itemPrice: 5000,
       },
     ];
     setCartItems(updatedCartItems);

@@ -38,6 +38,7 @@ function CartItem({ item, cartItems, setCartItems }) {
         <h5>{item.itemCount}</h5>
         <button onClick={() => changeCount(-1)}>-</button>
         <button onClick={() => changeCount(-1 * item.itemCount)}>del</button>
+        <h5>{item.itemPrice}</h5>
       </CartItemRight>
     </CI>
   );
