@@ -7,7 +7,7 @@ import Button from "../common/Button";
 import MenuModal from "./MenuModal";
 
 function Menu() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [categories, setCategories] = useState([
     "NEW",
     "에스프레소",
@@ -40,11 +40,6 @@ function Menu() {
     /* axios를 이용하여 category를 가져온다. */
   };
 
-  const goPayment = () => {
-    // 결제 버튼을 누르면 다음 페이지로 이동
-    navigate("/kiosk/payment");
-  };
-
   return (
     <div className="Menu">
       <MenuCategory
@@ -58,7 +53,6 @@ function Menu() {
         setModal={setModal}
       />
       <Cart cartItems={cartItems} setCartItems={setCartItems} />
-      <Button onClick={goPayment} text="결제" />
       {modal && (
         <MenuModal
           itemName={selectedMenu}
