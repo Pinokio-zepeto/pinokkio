@@ -10,9 +10,15 @@ function PosMainPage() {
   const addNewOrder = () => {
     const newOrder = {
       id: orders.length + 1,
-      items: [],
+      kioskNumber: Math.floor(Math.random() * 5) + 1,
+      items: [
+        { name: "아메리카노", quantity: 2, price: 4500 },
+        { name: "카페라떼", quantity: 1, price: 5000 },
+      ],
       status: "준비 중",
-      totalAmount: 0,
+      totalAmount: 14000,
+      paymentMethod: "카드",
+      orderTime: new Date().toISOString(),
     };
     setOrders([...orders, newOrder]);
   };
@@ -20,6 +26,9 @@ function PosMainPage() {
   const changeOrderStatus = (orderId, newStatus) => {
     if (newStatus === "완료") {
       setOrders(orders.filter((order) => order.id !== orderId));
+      if (selectedOrder && selectedOrder.id === orderId) {
+        setSelectedOrder(null);
+      }
     } else {
       setOrders(
         orders.map((order) =>
@@ -42,7 +51,12 @@ function PosMainPage() {
           onOrderSelect={selectOrder}
           onOrderComplete={(orderId) => changeOrderStatus(orderId, "완료")}
         />
-        {selectedOrder && <OrderDetail order={selectedOrder} />}
+        {selectedOrder && (
+          <OrderDetail
+            order={selectedOrder}
+            onComplete={() => changeOrderStatus(selectedOrder.id, "완료")}
+          />
+        )}
       </div>
     </div>
   );
