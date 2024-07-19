@@ -5,7 +5,7 @@
 
 package com.example.pinokkio.api.pos;
 
-import com.example.pinokkio.api.code.Code;
+import com.example.pinokkio.api.pos.code.Code;
 import com.example.pinokkio.common.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.example.pinokkio.api.code;
+package com.example.pinokkio.api.pos.code;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
