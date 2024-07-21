@@ -17,6 +17,17 @@ spring:
     multipart:
       max-file-size: 20MB
       max-request-size: 20MB
+  redis:
+    host: localhost
+    port: 6379
+  mail:
+    host: smtp.naver.com
+    port: 465
+    username: ${EMAIL}
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.ssl.enable: true
+      mail.smtp.ssl.trust: smtp.naver.com
 
 cloud:
   aws:
