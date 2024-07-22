@@ -52,15 +52,12 @@ public class MailService {
         log.info("authNum ={}", authNum);
 
         String title = "Pinokkio 인증 번호 안내";
-
         MimeMessage message = javaMailSender.createMimeMessage();
-        log.info("message 생성");
+        log.info("message 생성 = {}", message);
 
         message.addRecipients(MimeMessage.RecipientType.TO, email);
         message.setSubject(title);
-
-
-
+        log.info("message 설정 완료");
 
         String msgg = "";
         msgg += "<p style=\"font-size:10pt;font-family:sans-serif;padding:0 0 0 10pt\"><br></p>";
@@ -97,9 +94,7 @@ public class MailService {
         //메일전송에 필요한 정보 설정
         MimeMessage emailForm = createEmailForm(toEmail);
         log.info("createEmailForm 호출");
-
         javaMailSender.send(emailForm);
-
         log.info("send호출");
         //Redis 에서 인증번호 가져오기
         return redisUtil.getData(emailForm.getSubject());
