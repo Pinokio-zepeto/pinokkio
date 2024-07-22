@@ -36,14 +36,10 @@ public class Kiosk {
     private Pos pos;
 
     @Column(nullable = false)
-    private String name;
+    private String email;
 
     @Column(nullable = false)
     private String password;
-
-    public void updateName(String newName) {
-        this.name = newName;
-    }
 
     public void updatePassword(String newPassword) {
         this.password = newPassword;

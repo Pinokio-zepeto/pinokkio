@@ -94,6 +94,7 @@ public class MailService {
         //메일전송에 필요한 정보 설정
         MimeMessage emailForm = createEmailForm(toEmail);
         log.info("createEmailForm 호출");
+        log.info(String.valueOf(emailForm));
         javaMailSender.send(emailForm);
         log.info("send호출");
         //Redis 에서 인증번호 가져오기
