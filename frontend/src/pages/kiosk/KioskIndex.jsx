@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
-import CarouselPage from "./CarouselPage";
-import MenuPage from "./younger/MenuPage";
-import PaymentPage from "./younger/PaymentPage";
-import ReceiptPage from "./younger/ReceiptPage";
-import ElderMenuPage from "./elder/ElderMenuPage";
-import ElderPaymentPage from "./elder/ElderPaymentPage";
-import ElderReceiptPage from "./elder/ElderReceiptPage";
-import LoadingPage from "./elder/LoadingPage";
+import React, { useState } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import CarouselPage from './CarouselPage';
+import MenuPage from './younger/MenuPage';
+import PaymentPage from './younger/PaymentPage';
+import ReceiptPage from './younger/ReceiptPage';
+import ElderMenuPage from './elder/ElderMenuPage';
+import ElderPaymentPage from './elder/ElderPaymentPage';
+import ElderReceiptPage from './elder/ElderReceiptPage';
+import LoadingPage from './elder/LoadingPage';
 
 function AdvIndex() {
   return (

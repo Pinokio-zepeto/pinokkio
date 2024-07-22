@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import Menu from "../../../components/kiosk/Menu";
+import React, { useEffect, useState } from 'react';
+import Menu from '../../../components/kiosk/Menu';
 
 function MenuPage() {
   return (

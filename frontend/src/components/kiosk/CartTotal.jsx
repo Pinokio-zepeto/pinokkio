@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import Button from "../common/Button";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import Button from '../common/Button';
 
 const CT = styled.div`
   display: flex;
@@ -29,7 +29,7 @@ function CartTotal({ cartItems }) {
 
   const goPayment = () => {
     // 결제 버튼을 누르면 다음 페이지로 이동
-    navigate("/kiosk/payment");
+    navigate('/kiosk/payment');
   };
   return (
     <CT>

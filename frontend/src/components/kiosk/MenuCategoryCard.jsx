@@ -1,9 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const MCC = styled.div`
-  background: ${(props) =>
-    props.cat == props.selectedcat ? "orange" : "yellow"};
+  background: ${(props) => (props.cat == props.selectedcat ? 'orange' : 'yellow')};
   width: 100px;
   border: black solid 1px;
 `;
