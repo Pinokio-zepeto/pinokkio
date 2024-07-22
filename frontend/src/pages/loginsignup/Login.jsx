@@ -1,28 +1,28 @@
-import React from "react";
-import "./Login.css";
-import Button from "../../components/common/Button";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import React from 'react';
+import './Login.css';
+import Button from '../../components/common/Button';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 function Login() {
-  const [id, setId] = useState("");
+  const [id, setId] = useState('');
   const navigate = useNavigate();
 
   const findPassword = () => {
-    navigate("/findpassword1");
+    navigate('/findpassword1');
   };
   const signUp = () => {
-    navigate("/signup");
+    navigate('/signup');
   };
 
   const handleLogin = (e) => {
     e.preventDefault(); // 기본 폼 제출 방지
-    if (id === "advisor") {
-      navigate("/advisor");
-    } else if (id === "pos") {
-      navigate("/pos");
+    if (id === 'advisor') {
+      navigate('/advisor');
+    } else if (id === 'pos') {
+      navigate('/pos');
     } else {
-      navigate("/kiosk");
+      navigate('/kiosk');
     }
   };
 

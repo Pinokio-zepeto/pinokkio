@@ -23,10 +23,20 @@ function OrderHistoryDetail({ order, onCancelOrder }) {
     <div className="OrderHistoryDetail">
       <div className="order-info">
         <h2>주문 상세</h2>
-        <p>결제 금액: {isCancelled ? <CancelledText>{order.totalAmount}원</CancelledText> : `${order.totalAmount}원`}</p>
+        <p>
+          결제 금액:{' '}
+          {isCancelled ? (
+            <CancelledText>{order.totalAmount}원</CancelledText>
+          ) : (
+            `${order.totalAmount}원`
+          )}
+        </p>
         <p>결제 시간: {new Date(order.orderTime).toLocaleString()}</p>
         {isCancelled && <p>취소 시간: {new Date().toLocaleString()}</p>}
-        <p>결제 수단: {isCancelled ? <CancelledText>{order.paymentMethod}</CancelledText> : order.paymentMethod}</p>
+        <p>
+          결제 수단:{' '}
+          {isCancelled ? <CancelledText>{order.paymentMethod}</CancelledText> : order.paymentMethod}
+        </p>
         <p>승인 상태: {isCancelled ? '취소됨' : '결제완료'}</p>
       </div>
       <div className="order-actions">
@@ -41,7 +51,9 @@ function OrderHistoryDetail({ order, onCancelOrder }) {
         <h3>주문 내역</h3>
         {order.items.map((item, index) => (
           <div key={index} className="order-item">
-            <p>{item.name} {item.quantity} {item.price * item.quantity}원</p>
+            <p>
+              {item.name} {item.quantity} {item.price * item.quantity}원
+            </p>
           </div>
         ))}
       </div>

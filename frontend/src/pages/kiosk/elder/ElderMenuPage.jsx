@@ -1,6 +1,6 @@
-import React from "react";
-import { Router, Route, Routes, useNavigate } from "react-router-dom";
-import Menu from "../../../components/kiosk/Menu";
+import React from 'react';
+import { Router, Route, Routes, useNavigate } from 'react-router-dom';
+import Menu from '../../../components/kiosk/Menu';
 
 function ElderMenuPage() {
   return (

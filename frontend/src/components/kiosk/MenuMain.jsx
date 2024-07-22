@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import MenuMainCard from "./MenuMainCard";
-import styled from "styled-components";
+import React, { useEffect, useState } from 'react';
+import MenuMainCard from './MenuMainCard';
+import styled from 'styled-components';
 
 const MM = styled.div`
   display: flex;
@@ -13,7 +13,7 @@ function MenuMain({ selectedCategory, setSelectedMenu, setModal }) {
   useEffect(() => {
     /* 처움 렌더링할 때랑 카테고리 선택할 때마다 getMenu 실행 */
     getMenu();
-    console.log("change menus");
+    console.log('change menus');
   }, [selectedCategory]);
 
   const getMenu = () => {

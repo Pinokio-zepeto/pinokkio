@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import MenuCategoryCard from "./MenuCategoryCard";
-import styled from "styled-components";
+import React, { useEffect, useState } from 'react';
+import MenuCategoryCard from './MenuCategoryCard';
+import styled from 'styled-components';
 
 const MC = styled.div`
   display: flex;

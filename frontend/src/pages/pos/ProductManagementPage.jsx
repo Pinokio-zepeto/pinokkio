@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function ProductManagementPage() {
   return <div>This is ProductManagementPage</div>;
