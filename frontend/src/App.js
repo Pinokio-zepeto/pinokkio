@@ -15,6 +15,7 @@ import KioskIndex from "./pages/kiosk/KioskIndex";
 import PosIndex from "./pages/pos/PosIndex";
 import AdvIndex from "./pages/advisor/AdvIndex";
 
+
 function App() {
   const [userId, setUserId] = useState("");
   useEffect(() => {
