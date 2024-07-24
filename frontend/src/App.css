@@ -1,0 +1,11 @@
+@import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
+
+#root {
+  height: 1000px;
+}
+
+.App {
+  font-family: 'Nanum Gothic';
+  font-style: normal;
+  font-weight: 400;
+}

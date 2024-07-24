@@ -1,7 +1,32 @@
-import React from "react";
+import React from 'react';
+import styled from 'styled-components';
+import coffeeImage from '../../assets/coffee_image.png';
 
-function MenuCard() {
-  return <div className="MenuCard">this is menu card</div>;
+const MMC = styled.div`
+  background: white;
+  width: 200px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+`;
+
+const Image = styled.img`
+  width: 200px;
+  height: 200px;
+`;
+
+function MenuMainCard({ menu, setSelectedMenu, setModal }) {
+  const handleClick = () => {
+    setModal(true);
+    setSelectedMenu(menu);
+  };
+
+  return (
+    <MMC onClick={handleClick}>
+      <Image src={coffeeImage} />
+      {menu}
+    </MMC>
+  );
 }
 
-export default MenuCard;
+export default MenuMainCard;
