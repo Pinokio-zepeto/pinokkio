@@ -64,9 +64,20 @@ const ProductModal = ({ product, categories, onSave, onClose }) => {
   return (
     <Modal>
       <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="상품명" required />
-      <Input value={price} onChange={(e) => setPrice(e.target.value)} placeholder="가격" type="number" required />
+      <Input
+        value={price}
+        onChange={(e) => setPrice(e.target.value)}
+        placeholder="가격"
+        type="number"
+        required
+      />
       <Input value={image} onChange={(e) => setImage(e.target.value)} placeholder="이미지 URL" />
-      <TextArea value={detail} onChange={(e) => setDetail(e.target.value)} placeholder="상품 설명" required />
+      <TextArea
+        value={detail}
+        onChange={(e) => setDetail(e.target.value)}
+        placeholder="상품 설명"
+        required
+      />
       <select value={category} onChange={(e) => setCategory(e.target.value)}>
         <option value="">카테고리 선택</option>
         {categories.map((cat) => (

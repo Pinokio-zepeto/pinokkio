@@ -28,11 +28,11 @@ const CategoryModal = ({ category, onSave, onClose }) => {
 
   return (
     <Modal>
-      <Input 
-        value={name} 
-        onChange={(e) => setName(e.target.value)} 
-        placeholder="카테고리명" 
-        required 
+      <Input
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="카테고리명"
+        required
       />
       <button onClick={handleSave}>확인</button>
       <button onClick={onClose}>취소</button>
