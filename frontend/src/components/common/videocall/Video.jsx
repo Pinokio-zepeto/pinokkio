@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Video.css';
-import VideoComponent from './components/VideoComponent';
-import AudioComponent from './components/AudioComponent';
+import VideoComponent from './VideoComponent';
+import AudioComponent from './AudioComponent';
 import {
   LocalVideoTrack,
   RemoteParticipant,

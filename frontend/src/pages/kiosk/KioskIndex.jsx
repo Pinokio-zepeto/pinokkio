@@ -19,6 +19,11 @@ const KioskForm = styled.div`
 `;
 
 function AdvIndex() {
+  const navigate = useNavigate();
+
+  const onClick = () => {
+    navigate(-1);
+  };
   return (
     <KioskForm>
       <div style={{ width: '50%' }}>

@@ -22,7 +22,8 @@ function CartTotal({ cartItems }) {
   const calculatePrice = () => {
     let ttl = 0;
     for (var i = 0; i < cartItems.length; i++) {
-      ttl += cartItems[i].itemPrice;
+      console.log(cartItems);
+      ttl += cartItems[i].itemPrice * cartItems[i].itemCount;
     }
     setTotalPrice(ttl);
   };
