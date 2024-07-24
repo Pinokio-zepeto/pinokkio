@@ -10,8 +10,11 @@ const MM = styled.div`
 `;
 
 function MenuMain({ selectedCategory, setSelectedMenu, setModal }) {
-  const [nowPage, setNowPage] = useState();
+  // 현재 보고 있는 페이지를 관리하는 변수
+  const [nowPage, setNowPage] = useState(0);
+  // showSize * showSize 배열로 보여줌
   const [showSize, setShowSize] = useState(3);
+  // 메뉴들을 페이지에 맞게 담고 있는 배열
   const [pages, setPages] = useState([]);
 
   useEffect(() => {
@@ -32,25 +35,37 @@ function MenuMain({ selectedCategory, setSelectedMenu, setModal }) {
     }
 
     const pagesLength = list.length / (showSize * showSize);
-    for (let i = 0; i < pagesLength; i++) {
-      pages.push([]);
+    let pages_temp = [];
+    for (let p = 0; p < pagesLength; p++) {
+      pages_temp.push([]);
+      for (let i = 0; i < showSize; i++) {
+        pages_temp[p].push([]);
+        for (let j = 0; j < showSize; j++) {
+          pages_temp[p][i].push(list[p * pagesLength * showSize * showSize + i * showSize + j]);
+        }
+      }
     }
+    console.log(pages_temp);
 
-    for (let i = 0; i < showSize; i++) {
-      for (let j = 0; j < showSize; j++) {}
-    }
+    setPages(pages_temp);
+    console.log(pages);
   };
 
   return (
     <MM>
-      {menus.map((menu, index) => (
-        <MenuMainCard
-          key={index}
-          menu={menu}
-          setSelectedMenu={setSelectedMenu}
-          setModal={setModal}
-        />
-      ))}
+      {pages[nowPage] &&
+        pages[nowPage].map((row, rowIndex) => (
+          <div key={rowIndex} style={{ display: 'flex', flexDirection: 'column' }}>
+            {row.map((menu, colIndex) => (
+              <MenuMainCard
+                key={colIndex}
+                menu={menu}
+                setSelectedMenu={setSelectedMenu}
+                setModal={setModal}
+              />
+            ))}
+          </div>
+        ))}
     </MM>
   );
 }
