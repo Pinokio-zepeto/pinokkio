@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import DescriptionCard from '../../components/pos/DescriptionCard';
-import { Bar, Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 Chart.register(...registerables);
 
@@ -20,6 +22,7 @@ const MainHeader = styled.div`
   display: flex;
   flex-direction: row;
 `;
+
 const MainBody = styled.div`
   display: flex;
   flex-direction: column;
@@ -36,13 +39,63 @@ const Charts = styled.div`
   border: 1px;
 `;
 
+const DateDisplay = styled.div`
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+  font-weight: bold;
+  text-align: center;
+  &:hover {
+    background-color: #e0e0e0;
+  }
+`;
+
 function SalesReportPage() {
-  const [todayDate, setTodayDate] = useState('');
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
   useEffect(() => {
-    // todayDate를 세팅한다.
-  });
+    setStartDate(new Date());
+    setEndDate(new Date());
+  }, []);
 
+  const handleTodayClick = () => {
+    const today = new Date();
+    setStartDate(today);
+    setEndDate(today);
+  };
+
+  const handleYesterdayClick = () => {
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    setStartDate(yesterday);
+    setEndDate(yesterday);
+  };
+
+  const handleThisWeekClick = () => {
+    const today = new Date();
+    const firstDayOfWeek = new Date(today);
+    firstDayOfWeek.setDate(today.getDate() - today.getDay() + 1);
+    const lastDayOfWeek = new Date(today);
+    lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
+    setStartDate(firstDayOfWeek);
+    setEndDate(lastDayOfWeek);
+  };
+
+  const handleThisMonthClick = () => {
+    const today = new Date();
+    const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+    setStartDate(firstDayOfMonth);
+    setEndDate(lastDayOfMonth);
+  };
+
+  const formatDate = (date) => {
+    return date instanceof Date && !isNaN(date.getTime()) ? date.toLocaleDateString() : '';
+  };
   const data = {
     labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월'],
     datasets: [
@@ -73,13 +126,35 @@ function SalesReportPage() {
         <div>매출 리포트</div>
         <MainHeader>
           <div>
-            <button>어제</button>
-            <button>오늘</button>
-            <button>이번주</button>
-            <button>이번달</button>
+            <button onClick={handleYesterdayClick}>어제</button>
+            <button onClick={handleTodayClick}>오늘</button>
+            <button onClick={handleThisWeekClick}>이번주</button>
+            <button onClick={handleThisMonthClick}>이번달</button>
           </div>
           <div>
-            <div>2024-06-10 ~ 2024-07-10</div>
+            <DateDisplay onClick={() => setIsDatePickerOpen(!isDatePickerOpen)} tabIndex="0">
+              {formatDate(startDate)} ~ {formatDate(endDate)}
+            </DateDisplay>
+            {isDatePickerOpen && (
+              <div style={{ display: 'flex', gap: '10px' }}>
+                <DatePicker
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date)}
+                  selectsStart
+                  startDate={startDate}
+                  endDate={endDate}
+                  inline
+                />
+                <DatePicker
+                  selected={endDate}
+                  onChange={(date) => setEndDate(date)}
+                  selectsEnd
+                  startDate={startDate}
+                  endDate={endDate}
+                  inline
+                />
+              </div>
+            )}
           </div>
         </MainHeader>
         <MainBody>
@@ -97,7 +172,7 @@ function SalesReportPage() {
             <DescriptionCard title={'할인'} contents={'0원'} notice={''}></DescriptionCard>
           </Descriptions>
           <Charts>
-            <Bar data={data} options={options} />;
+            <Bar data={data} options={options} />
           </Charts>
         </MainBody>
       </Main>
