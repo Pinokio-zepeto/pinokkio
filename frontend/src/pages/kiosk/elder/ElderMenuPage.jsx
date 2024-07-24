@@ -1,20 +1,13 @@
-import React from "react";
-import { Router, Route, Routes, useNavigate } from "react-router-dom";
-import Button from "../../../components/common/Button";
-import Menu from "../../../components/kiosk/Menu";
+import React from 'react';
+import { Router, Route, Routes, useNavigate } from 'react-router-dom';
+import Menu from '../../../components/kiosk/Menu';
 
 function ElderMenuPage() {
-  const navigate = useNavigate();
-
-  const goPayment = () => {
-    navigate("/payment");
-  };
-
   return (
-    <div className="MenuPage">
-      this is menu-page
+    <div className="ElderMenuPage">
+      this is elder menu-page
+      {/* 비디오 화면 추가 */}
       <Menu />
-      <Button onClick={goPayment} text="결제" />
     </div>
   );
 }

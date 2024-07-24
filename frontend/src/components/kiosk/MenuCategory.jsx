@@ -1,24 +1,31 @@
-import React from "react";
-import MenuCategoryCard from "./MenuCategoryCard";
+import React, { useEffect, useState } from 'react';
+import MenuCategoryCard from './MenuCategoryCard';
+import styled from 'styled-components';
 
-const MccList = () => {
-  const mccData = [1, 2, 3, 4, 5];
+const MC = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+function MenuCategory({ categories, selectedCategory, setSelectedCategory }) {
+  const [nowFirst, setNowFirst] = useState(0);
+  const showSize = 5;
 
   return (
-    <ul>
-      {mccData.map((mcc, index) => (
-        <MenuCategoryCard key={index}>{mcc}</MenuCategoryCard>
-      ))}
-    </ul>
-  );
-};
-
-function MenuCategory() {
-  return (
-    <div className="MenuCategory">
-      <h1>menu category list</h1>
-      <MccList />
-    </div>
+    <MC>
+      {nowFirst === 0 ? null : <button onClick={() => setNowFirst(nowFirst - 1)}> {'<'}</button>}
+      {categories.slice(nowFirst, nowFirst + showSize + 1).map((cat, index) => (
+        <MenuCategoryCard
+          key={index}
+          cat={cat}
+          setselectedcat={setSelectedCategory}
+          selectedcat={selectedCategory}
+        />
+      ))}{' '}
+      {nowFirst === categories.length - showSize ? null : (
+        <button onClick={() => setNowFirst(nowFirst + 1)}> {'>'}</button>
+      )}
+    </MC>
   );
 }
 

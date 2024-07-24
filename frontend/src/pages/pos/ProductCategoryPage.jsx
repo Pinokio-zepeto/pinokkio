@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function ProductCategoryPage() {
   return <div>This is ProductCategoryPage</div>;

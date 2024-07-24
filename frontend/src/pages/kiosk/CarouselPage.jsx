@@ -1,16 +1,16 @@
-import React from "react";
-import Button from "../../components/common/Button";
-import { Router, Route, Routes, useNavigate } from "react-router-dom";
+import React from 'react';
+import Button from '../../components/common/Button';
+import { Router, Route, Routes, useNavigate } from 'react-router-dom';
 
 function CarouselPage() {
   const navigate = useNavigate();
 
   const havingHere = () => {
-    navigate("/menu", { state: { where: "having here" } });
+    navigate('/kiosk/menu', { state: { where: 'having here' } });
   };
 
   const takeAway = () => {
-    navigate("/menu", { state: { where: "take away" } });
+    navigate('/kiosk/menu', { state: { where: 'take away' } });
   };
 
   return (

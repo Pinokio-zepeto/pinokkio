@@ -1,24 +1,26 @@
-import React, { useEffect, useState } from "react";
-import {
-  Routes,
-  Route,
-  BrowserRouter as Router,
-  useRoutes,
-} from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Routes, Route, BrowserRouter as Router, useRoutes } from 'react-router-dom';
 
-import Login from "./pages/loginsignup/Login";
-import SignUp from "./pages/loginsignup/SignUp";
-import FindPassword1 from "./pages/loginsignup/FindPassword1";
-import FindPassword2 from "./pages/loginsignup/FindPassword2";
+import Login from './pages/loginsignup/Login';
+import SignUp from './pages/loginsignup/SignUp';
+import FindPassword1 from './pages/loginsignup/FindPassword1';
+import FindPassword2 from './pages/loginsignup/FindPassword2';
 
+<<<<<<< HEAD
 import KioskIndex from "./pages/kiosk/KioskIndex";
 import PosIndex from "./pages/pos/PosIndex";
 import AdvIndex from "./pages/advisor/AdvIndex";
+=======
+import KioskIndex from './pages/kiosk/KioskIndex';
+import PosIndex from './pages/pos/PosIndex';
+import AdvIndex from './pages/advisor/AdvIndex';
+
+>>>>>>> 86d398387384d8b184f5bd9ac224e8f32c1af46c
 
 function App() {
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState('');
   useEffect(() => {
-    setUserId(localStorage.getItem("id"));
+    setUserId(localStorage.getItem('id'));
     console.log(userId);
   });
   return (

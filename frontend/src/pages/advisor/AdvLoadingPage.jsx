@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import Navbar from "../../components/advisor/Navbar";
 import CustomerKiosk from "../../components/advisor/CustomerKiosk";
@@ -19,6 +20,9 @@ const NavComponents = styled.div`
   justify-content: space-between;
   margin-bottom: 10px;
 `;
+=======
+import React from 'react';
+>>>>>>> 86d398387384d8b184f5bd9ac224e8f32c1af46c
 
 function AdvLoadingPage() {
   return (
