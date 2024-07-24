@@ -1,10 +1,18 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import coffeeImage from '../../assets/coffee_image.png';
 
 const MMC = styled.div`
   background: white;
-  width: 100px;
-  border: black solid 1px;
+  width: 200px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+`;
+
+const Image = styled.img`
+  width: 200px;
+  height: 200px;
 `;
 
 function MenuMainCard({ menu, setSelectedMenu, setModal }) {
@@ -13,7 +21,12 @@ function MenuMainCard({ menu, setSelectedMenu, setModal }) {
     setSelectedMenu(menu);
   };
 
-  return <MMC onClick={handleClick}>{menu}</MMC>;
+  return (
+    <MMC onClick={handleClick}>
+      <Image src={coffeeImage} />
+      {menu}
+    </MMC>
+  );
 }
 
 export default MenuMainCard;
