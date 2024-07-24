@@ -6,16 +6,9 @@ import SignUp from './pages/loginsignup/SignUp';
 import FindPassword1 from './pages/loginsignup/FindPassword1';
 import FindPassword2 from './pages/loginsignup/FindPassword2';
 
-<<<<<<< HEAD
-import KioskIndex from "./pages/kiosk/KioskIndex";
-import PosIndex from "./pages/pos/PosIndex";
-import AdvIndex from "./pages/advisor/AdvIndex";
-=======
 import KioskIndex from './pages/kiosk/KioskIndex';
 import PosIndex from './pages/pos/PosIndex';
 import AdvIndex from './pages/advisor/AdvIndex';
-
->>>>>>> 86d398387384d8b184f5bd9ac224e8f32c1af46c
 
 function App() {
   const [userId, setUserId] = useState('');

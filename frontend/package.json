@@ -15,11 +15,6 @@
     "react-dom": "^18.2.0",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.24.1",
-<<<<<<< HEAD
-    "react-scripts": "^3.0.1",
-    "styled-components": "^6.1.12",
-    "web-vitals": "^2.1.4"
-=======
     "react-scripts": "5.0.1",
     "react-transition-group": "^4.4.5",
     "styled-components": "^6.1.11",
@@ -30,7 +25,6 @@
     "eslint-config-prettier": "^8.10.0",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.8"
->>>>>>> 86d398387384d8b184f5bd9ac224e8f32c1af46c
   },
   "scripts": {
     "start": "react-scripts start",

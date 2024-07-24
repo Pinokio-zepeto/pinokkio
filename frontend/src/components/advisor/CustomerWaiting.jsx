@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 import { useState } from 'react';
 
-import CustomerWaitingRooms from "./CustomerWaitingRooms";
+import CustomerWaitingRooms from './CustomerWaitingRooms';
 
 const CustomerWaitingSection = styled.div`
   width: 695px;
@@ -13,8 +13,8 @@ const CustomerWaitingSection = styled.div`
 `;
 
 function CustomerWaiting(props) {
-  const [rooms, useRooms] = useState([1, 2, 3])
-    
+  const [rooms, useRooms] = useState([1, 2, 3]);
+
   return (
     <div>
       <CustomerWaitingSection>

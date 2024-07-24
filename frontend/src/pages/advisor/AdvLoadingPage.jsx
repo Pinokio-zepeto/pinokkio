@@ -1,11 +1,10 @@
-<<<<<<< HEAD
-import React from "react";
-import Navbar from "../../components/advisor/Navbar";
-import CustomerKiosk from "../../components/advisor/CustomerKiosk";
-import CustomerVideo from "../../components/advisor/CustomerVideo";
-import CustomerWaiting from "../../components/advisor/CustomerWaiting";
-import ToggleSwitch from "../../components/advisor/ToggleSwitch";
-import styled from "styled-components";
+import React from 'react';
+import Navbar from '../../components/advisor/Navbar';
+import CustomerKiosk from '../../components/advisor/CustomerKiosk';
+import CustomerVideo from '../../components/advisor/CustomerVideo';
+import CustomerWaiting from '../../components/advisor/CustomerWaiting';
+import ToggleSwitch from '../../components/advisor/ToggleSwitch';
+import styled from 'styled-components';
 
 const Components = styled.div`
   display: flex;
@@ -20,16 +19,13 @@ const NavComponents = styled.div`
   justify-content: space-between;
   margin-bottom: 10px;
 `;
-=======
-import React from 'react';
->>>>>>> 86d398387384d8b184f5bd9ac224e8f32c1af46c
 
 function AdvLoadingPage() {
   return (
     <div>
       <NavComponents>
         <Navbar />
-        <div className="toggle" style={{display: 'flex'}}>
+        <div className="toggle" style={{ display: 'flex' }}>
           <ToggleSwitch />
           <p>연결 거절모드 토글</p>
         </div>
