@@ -6,10 +6,6 @@ const CategoryTable = styled.table`
   border-collapse: collapse;
 `;
 
-const ModalBackground = styled.div``;
-const ModalContent = styled.div``;
-const ModalButton = styled.button``;
-
 const CategoryRow = styled.tr`
   border-bottom: 1px solid #ddd;
   &:hover .delete-button {
