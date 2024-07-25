@@ -7,7 +7,13 @@ import KioskManagementPage from './KioskManagementPage';
 import ProductManagementPage from './ProductManagementPage';
 import ProductCategoryPage from './ProductCategoryPage';
 import SalesReportPage from './SalesReportPage';
+import styled from 'styled-components';
 import '../../styles/pos/pos.css';
+
+const Content = styled.div`
+  margin-left: ${(props) => (props.isNavbarOpen ? '250px' : '0')};
+  transition: margin-left 0.3s ease-in-out;
+`;
 
 function PosIndex() {
   const location = useLocation();
@@ -29,15 +35,17 @@ function PosIndex() {
   return (
     <div className="Pos">
       <Navbar items={navItems} isOpen={isNavbarOpen} toggleNavbar={toggleNavbar} />
-      <div className={`content ${isNavbarOpen ? 'shifted' : ''}`}>
-        <Routes>
-          <Route path="/" element={<PosMainPage />} />
-          <Route path="order-list" element={<OrderListPage />} />
-          <Route path="kiosk-management" element={<KioskManagementPage />} />
-          <Route path="product-management" element={<ProductManagementPage />} />
-          <Route path="product-category" element={<ProductCategoryPage />} />
-          <Route path="sales-report" element={<SalesReportPage />} />
-        </Routes>
+      <div style={{ marginTop: 60 }}>
+        <Content isNavbarOpen={isNavbarOpen}>
+          <Routes>
+            <Route path="/" element={<PosMainPage />} />
+            <Route path="order-list" element={<OrderListPage />} />
+            <Route path="kiosk-management" element={<KioskManagementPage />} />
+            <Route path="product-management" element={<ProductManagementPage />} />
+            <Route path="product-category" element={<ProductCategoryPage />} />
+            <Route path="sales-report" element={<SalesReportPage />} />
+          </Routes>
+        </Content>
       </div>
     </div>
   );
