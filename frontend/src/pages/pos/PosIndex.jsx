@@ -5,7 +5,6 @@ import PosMainPage from './PosMainPage';
 import OrderListPage from './OrderListPage';
 import KioskManagementPage from './KioskManagementPage';
 import ProductManagementPage from './ProductManagementPage';
-import ProductCategoryPage from './ProductCategoryPage';
 import SalesReportPage from './SalesReportPage';
 import styled from 'styled-components';
 import '../../styles/pos/pos.css';
@@ -24,7 +23,6 @@ function PosIndex() {
     { path: '/pos/order-list', text: '주문 내역' },
     { path: '/pos/kiosk-management', text: '키오스크 관리' },
     { path: '/pos/product-management', text: '상품 관리' },
-    { path: '/pos/product-category', text: '카테고리 관리' },
     { path: '/pos/sales-report', text: '매출 리포트' },
   ];
 
@@ -42,7 +40,6 @@ function PosIndex() {
             <Route path="order-list" element={<OrderListPage />} />
             <Route path="kiosk-management" element={<KioskManagementPage />} />
             <Route path="product-management" element={<ProductManagementPage />} />
-            <Route path="product-category" element={<ProductCategoryPage />} />
             <Route path="sales-report" element={<SalesReportPage />} />
           </Routes>
         </Content>
