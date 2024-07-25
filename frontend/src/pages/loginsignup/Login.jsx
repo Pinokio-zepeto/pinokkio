@@ -4,6 +4,8 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import KioskNavbar from '../../components/common/KioskNavbar';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../../features/user/userSlice';
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -74,6 +76,8 @@ const ButtonWrapper = styled.div`
 function Login() {
   const [id, setId] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
 
   const findPassword = () => {
     navigate('/findpassword1');
@@ -87,10 +91,16 @@ function Login() {
     e.preventDefault(); // 기본 폼 제출 방지
     if (id === 'advisor') {
       navigate('/advisor');
+      const userData = { name: id, type: 'advisor' };
+      dispatch(setUser(userData));
     } else if (id === 'pos') {
       navigate('/pos');
+      const userData = { name: id, type: 'pos' };
+      dispatch(setUser(userData));
     } else {
       navigate('/kiosk');
+      const userData = { name: id, type: 'kiosk' };
+      dispatch(setUser(userData));
     }
   };
 
