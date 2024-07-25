@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import MenuButton from './MenuButton.png'; // 메뉴 버튼 이미지 경로
-import CloseButton from './CloseButton.png'; // 닫기 버튼 이미지 경로
+import MenuButton from './images/MenuButton.png'; // 메뉴 버튼 이미지 경로
+import CloseButton from './images/CloseButton.png'; // 닫기 버튼 이미지 경로
 import KioskNavbar from './KioskNavbar';
 import styled from 'styled-components';
 
