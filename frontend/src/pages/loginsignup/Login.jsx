@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import KioskNavbar from '../../components/common/KioskNavbar';
+import KioskNavbar from '../../components/common/Logo';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../features/user/userSlice';
 
@@ -18,6 +18,9 @@ const LoginWrapper = styled.div`
 `;
 
 const LoginForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -28,7 +31,7 @@ const LoginForm = styled.form`
 `;
 
 const Input = styled.input`
-  width: calc(100% - 20px);
+  width: 100%;
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ddd;
@@ -36,39 +39,45 @@ const Input = styled.input`
   font-size: 16px;
   box-sizing: border-box;
   color: #333;
+  &:focus {
+    outline: 1px solid #7392ff;
+  }
 `;
 
 const StyledButton = styled.button`
   width: 100%;
   padding: 10px;
   margin: 10px 0;
-  background-color: rgb(102, 102, 255);
+  background-color: #7392ff;
   border: none;
   border-radius: 4px;
   font-size: 16px;
+  color: white;
   cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    background-color: #add8e6;
+    transform: translateY(-2px);
+  }
+  &:active {
+    background-color: #d8ff75;
   }
 `;
 
 const ButtonWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: row-reverse;
+
   margin-top: 20px;
 
-  button {
-    width: 48%;
-    padding: 10px;
-    background-color: lightblue;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
+  div {
+    color: #7392ff;
+    font-size: 12px;
     cursor: pointer;
+    margin: 0 3px;
 
     &:hover {
-      background-color: #add8e6;
+      color: #d8ff75;
     }
   }
 `;
@@ -118,8 +127,9 @@ function Login() {
         <StyledButton type="submit">로그인</StyledButton>
       </LoginForm>
       <ButtonWrapper>
-        <button onClick={findPassword}>비밀번호 찾기</button>
-        <button onClick={signUp}>회원가입</button>
+        <div onClick={findPassword}>비밀번호 찾기 </div>
+        <div>|</div>
+        <div onClick={signUp}>회원가입</div>
       </ButtonWrapper>
     </LoginWrapper>
   );
