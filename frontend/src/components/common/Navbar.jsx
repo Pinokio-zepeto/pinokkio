@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import MenuButton from './images/MenuButton.png'; // 메뉴 버튼 이미지 경로
-import CloseButton from './images/CloseButton.png'; // 닫기 버튼 이미지 경로
-import KioskNavbar from './KioskNavbar';
+import MenuButton from '../../assets/images/MenuButton.png'; // 메뉴 버튼 이미지 경로
+import CloseButton from '../../assets/images/CloseButton.png'; // 닫기 버튼 이미지 경로
+import KioskNavbar from './Logo';
 import styled from 'styled-components';
 
 const NavbarContainer = styled.nav`
