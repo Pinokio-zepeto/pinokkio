@@ -5,15 +5,14 @@ import ja from 'date-fns/esm/locale/ja/index.js';
 
 const MM = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
 `;
 
 function MenuMain({ selectedCategory, setSelectedMenu, setModal }) {
   // 현재 보고 있는 페이지를 관리하는 변수
   const [nowPage, setNowPage] = useState(0);
   // showSize * showSize 배열로 보여줌
-  const [showSize, setShowSize] = useState(3);
+  const [showSize, setShowSize] = useState(5);
   // 메뉴들을 페이지에 맞게 담고 있는 배열
   const [pages, setPages] = useState([]);
 
@@ -55,7 +54,7 @@ function MenuMain({ selectedCategory, setSelectedMenu, setModal }) {
     <MM>
       {pages[nowPage] &&
         pages[nowPage].map((row, rowIndex) => (
-          <div key={rowIndex} style={{ display: 'flex', flexDirection: 'column' }}>
+          <div key={rowIndex} style={{ display: 'flex', flexDirection: 'row' }}>
             {row.map((menu, colIndex) => (
               <MenuMainCard
                 key={colIndex}
