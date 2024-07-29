@@ -110,11 +110,11 @@ function Login() {
       <LoginForm id="login-form" onSubmit={handleLogin}>
         <Input
           type="text"
-          className="Id"
+          className="id"
           placeholder="아이디"
           onChange={(e) => setId(e.target.value)}
         />
-        <Input type="password" className="Password" placeholder="패스워드" />
+        <Input type="password" className="password" placeholder="패스워드" />
         <StyledButton type="submit">로그인</StyledButton>
       </LoginForm>
       <ButtonWrapper>

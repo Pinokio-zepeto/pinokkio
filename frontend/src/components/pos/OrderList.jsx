@@ -1,20 +1,29 @@
 import React from 'react';
-import Button from '../common/Button';
 
 function OrderList({ orders, onOrderSelect, onOrderComplete }) {
   return (
-    <div className="OrderList">
-      <h2>주문 목록</h2>
-      {orders.map((order) => (
-        <div key={order.id} className="OrderItem">
-          <span onClick={() => onOrderSelect(order)}>
-            키오스크 #{order.kioskNumber} - 주문 #{order.id} -
-            {order.items.map((item) => item.name).join(', ')} -{order.totalAmount}원
-          </span>
-          <Button onClick={() => onOrderComplete(order.id)} text="완료" />
-        </div>
-      ))}
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>주문 번호</th>
+          <th>키오스크ID</th>
+          <th>판매 금액</th>
+          <th>주문 내역</th>
+          <th>완료 여부</th>
+        </tr>
+      </thead>
+      <tbody>
+        {orders.map((order) => (
+          <tr key={order.id} onClick={() => onOrderSelect(order)}>
+            <td>{order.id.toString().padStart(4, '0')}</td>
+            <td>{order.kioskID}</td>
+            <td>{order.amount.toLocaleString()}원</td>
+            <td>{order.items.map((item) => item.name).join(', ')}</td>
+            <td>{order.status === '완료' ? '완료' : '미완'}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }
 
