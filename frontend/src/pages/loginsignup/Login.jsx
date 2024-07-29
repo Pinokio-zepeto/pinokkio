@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import KioskNavbar from '../../components/common/Logo';
+import Logo from '../../components/common/Logo';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../features/user/userSlice';
 
@@ -84,6 +84,8 @@ const ButtonWrapper = styled.div`
 
 function Login() {
   const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
@@ -115,7 +117,7 @@ function Login() {
 
   return (
     <LoginWrapper>
-      <KioskNavbar />
+      <Logo />
       <LoginForm id="login-form" onSubmit={handleLogin}>
         <Input
           type="text"
@@ -123,7 +125,12 @@ function Login() {
           placeholder="아이디"
           onChange={(e) => setId(e.target.value)}
         />
-        <Input type="password" className="Password" placeholder="패스워드" />
+        <Input
+          type="password"
+          className="Password"
+          placeholder="패스워드"
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <StyledButton type="submit">로그인</StyledButton>
       </LoginForm>
       <ButtonWrapper>
