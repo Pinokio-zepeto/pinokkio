@@ -1,30 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import carouselimage from '../../assets/images/carouselimage.jpg';
+import carouselimage2 from '../../assets/images/carouselimage2.jpg';
+import carouselimage3 from '../../assets/images/carouselimage3.jpg';
+
 const CarouselPageStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 `;
 
 const ButtonContainer = styled.div`
-  position: relative;
-
-  /* display: flex; */
+  position: absolute;
+  display: flex;
   width: 100%;
   justify-content: center;
-  margin-bottom: 100%;
+  margin-top: 60vh;
 `;
 
 const CarouselWindow = styled.div`
-  position: relative;
-  width: 100%;
-  justify-content: center;
-  margin-bottom: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30vw;
+  height: 1000vh;
 `;
 
 const CarouselButton = styled.div`
@@ -32,7 +36,7 @@ const CarouselButton = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  background-color: white;
   border-radius: 10px;
   height: 12vh;
   width: 8vw;
@@ -41,15 +45,40 @@ const CarouselButton = styled.div`
   font-size: 3vh;
 `;
 
-const CarouselImage = styled.img`
-  position: relative;
+const Slider = styled.div`
+  display: flex;
+
   width: 100%;
   height: 100%;
+  object-fit: cover;
+`;
+
+const CarouselImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const CarouselMessage = styled.div`
+  position: absolute;
+
+  color: white;
+  margin-top: 20vh;
 `;
 
 function CarouselPage() {
   const navigate = useNavigate();
+  const slideRef = useRef(0);
+
   const [result, setResult] = useState(null);
+  const [carouselIndex, setCarouselIndex] = useState(0);
+
+  const [carouselimages, setCarouselimages] = useState([
+    carouselimage,
+    carouselimage2,
+    carouselimage3,
+    carouselimage,
+  ]);
 
   // useEffect(() => {
   //   /* 여기서부터 SSE 관련 코드 */
@@ -86,9 +115,50 @@ function CarouselPage() {
     navigate('/kiosk/menu', { state: { where: 'take away' } });
   };
 
+  // const slideAutoPlay = () => {
+  //   const interval = setInterval(() => {
+  //     handleSwipe(1);
+
+  //     if (carouselIndex === $slider.children.length - 1) {
+  //       setTimeout(() => {
+  //         $slider.style.transition = 'none';
+  //         currentIndex = 1;
+  //         moveOffset = (100 / slideAmount) * currentIndex;
+  //         $slider.style.transform = `translateX(-${moveOffset}%)`;
+  //       }, slideSpeed);
+  //     }
+  //   }, 3000);
+  // };
+
+  useEffect(() => {
+    moveSlider();
+  }, [carouselIndex]);
+
+  const moveSlider = () => {
+    setTimeout(() => {
+      setCarouselIndex(carouselIndex + 1);
+      console.log('carouselsize : ', carouselimages.length);
+      if (carouselIndex % 2 === 1) {
+        slideRef.current.style.transform = `translateX(-${15 * (carouselIndex + 1)}vw)`;
+        slideRef.current.style.transition = 'all 0.5s ease-in-out';
+        console.log(carouselIndex);
+      } else if (
+        carouselIndex >= 2 * (carouselimages.length - 1) &&
+        carouselIndex % (2 * (carouselimages.length - 1)) === 0
+      ) {
+        console.log('reset');
+        slideRef.current.style.transform = 'none';
+        slideRef.current.style.transition = `none`;
+        setCarouselIndex(1);
+      }
+    }, 2000);
+  };
+
   return (
     <CarouselPageStyle>
-      <CarouselImage src={carouselimage} alt="" />
+      <Slider ref={slideRef}>
+        {carouselimages && carouselimages.map((image) => <CarouselImage src={image} alt="" />)}
+      </Slider>
       <CarouselWindow>
         {result ? (
           <div>
@@ -106,7 +176,7 @@ function CarouselPage() {
             )}
           </div>
         ) : (
-          <div>얼굴 인식 결과를 기다리는 중...</div>
+          <CarouselMessage>얼굴 인식 결과를 기다리는 중...</CarouselMessage>
         )}
         <ButtonContainer>
           <CarouselButton onClick={havingHere}>
