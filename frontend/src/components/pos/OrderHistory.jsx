@@ -18,16 +18,31 @@ const SelectPayment = styled.div`
 `;
 
 const Header = styled.div`
-  height: 20px;
+  height: 30px;
   color: white;
-  background-color: black;
+  background-color: #4339ff;
   padding: 5px;
   font-weight: bolder;
+  font-size: 24px;
 `;
 
-const CustomDatePicker = styled(DatePicker)`
+// 날짜 선택기의 입력 필드를 스타일링
+const DateInput = styled.input`
   width: 318px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+  &:focus {
+    border-color: #007bff;
+    outline: none;
+  }
 `;
+
+const CustomDatePicker = ({ selected, onChange }) => (
+  <DatePicker showIcon selected={selected} onChange={onChange} customInput={<DateInput />} />
+);
 
 const OrderList = styled.div``;
 
@@ -35,9 +50,9 @@ const OrderListEach = styled.div`
   border: 1px solid #ccc;
   height: 100px;
   padding: 10px 10px 0 10px;
-  background-color: ${({ isSelected }) => (isSelected ? 'lightblue' : 'white')};
+  background-color: ${({ isSelected }) => (isSelected ? '#ffd8ca' : 'white')};
   &:hover {
-    background-color: lightblue;
+    background-color: #ffd8ca;
   }
 `;
 

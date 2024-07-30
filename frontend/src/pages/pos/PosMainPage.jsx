@@ -7,31 +7,15 @@ const PosMainPageWrapper = styled.div`
   font-family: 'Arial', sans-serif;
 `;
 
-const OrderContainer = styled.div`
-  display: flex;
-  margin: 20px;
-`;
-
-const OrderDetailWrapper = styled.div`
-  margin-left: 20px;
-  padding: 10px;
-  border: 1px solid #ddd;
-`;
-
-const OrderListContainer = styled.div`
-  width: 1000px;
-  border: 1px solid #ddd;
-`;
-
 function PosMainPage() {
   const initialOrders = [
     {
       id: 1,
       kioskID: 'kiosk1',
-      amount: 14000,
+      amount: 14500,
       items: [
         { name: '아메리카노', quantity: 1, price: 4500 },
-        { name: '카페라떼', quantity: 2, price: 10000 },
+        { name: '카페라떼', quantity: 2, price: 5000 },
       ],
       status: '완료',
       orderTime: '2024-07-29T11:15:47',
@@ -41,28 +25,28 @@ function PosMainPage() {
     {
       id: 2,
       kioskID: 'kiosk3',
-      amount: 15000,
+      amount: 10000,
       items: [
         { name: '바닐라라떼', quantity: 1, price: 5000 },
-        { name: '아이스아메리카노', quantity: 1, price: 10000 },
+        { name: '아이스아메리카노', quantity: 1, price: 5000 },
       ],
       status: '완료',
       orderTime: '2024-07-29T11:15:47',
       paymentMethod: '카드',
-      totalAmount: 15000,
+      totalAmount: 10000,
     },
     {
       id: 3,
       kioskID: 'kiosk4',
-      amount: 15000,
+      amount: 10000,
       items: [
         { name: '바닐라라떼', quantity: 1, price: 5000 },
-        { name: '아이스아메리카노', quantity: 1, price: 10000 },
+        { name: '아이스아메리카노', quantity: 1, price: 5000 },
       ],
       status: '완료',
       orderTime: '2024-07-29T11:15:47',
       paymentMethod: '카드',
-      totalAmount: 15000,
+      totalAmount: 10000,
     },
     {
       id: 4,
@@ -70,20 +54,20 @@ function PosMainPage() {
       amount: 15000,
       items: [
         { name: '바닐라라떼', quantity: 1, price: 5000 },
-        { name: '아이스아메리카노', quantity: 1, price: 10000 },
+        { name: '아이스아메리카노', quantity: 1, price: 5000 },
       ],
       status: '완료',
       orderTime: '2024-07-29T11:15:47',
       paymentMethod: '카드',
-      totalAmount: 15000,
+      totalAmount: 10000,
     },
     {
       id: 5,
       kioskID: 'kiosk1',
-      amount: 14000,
+      amount: 14500,
       items: [
         { name: '아메리카노', quantity: 1, price: 4500 },
-        { name: '카페라떼', quantity: 2, price: 10000 },
+        { name: '카페라떼', quantity: 2, price: 5000 },
       ],
       status: '완료',
       orderTime: '2024-07-29T11:15:47',
@@ -96,7 +80,7 @@ function PosMainPage() {
       amount: 15000,
       items: [
         { name: '바닐라라떼', quantity: 1, price: 5000 },
-        { name: '아이스아메리카노', quantity: 1, price: 10000 },
+        { name: '개맛잇는커피', quantity: 1, price: 10000 },
       ],
       status: '미완',
       orderTime: '2024-07-29T11:15:47',
@@ -109,7 +93,7 @@ function PosMainPage() {
       amount: 15000,
       items: [
         { name: '바닐라라떼', quantity: 1, price: 5000 },
-        { name: '아이스아메리카노', quantity: 1, price: 10000 },
+        { name: '전국1등커피', quantity: 1, price: 10000 },
       ],
       status: '미완',
       orderTime: '2024-07-29T11:15:47',
@@ -133,23 +117,18 @@ function PosMainPage() {
 
   return (
     <PosMainPageWrapper>
-      <OrderContainer>
-        <OrderListContainer>
-          <OrderList
-            orders={orders}
-            onOrderSelect={selectOrder}
-            onOrderComplete={(orderId) => changeOrderStatus(orderId, '완료')}
-          />
-        </OrderListContainer>
-        {selectedOrder && (
-          <OrderDetailWrapper>
-            <OrderDetail
-              order={selectedOrder}
-              onComplete={() => changeOrderStatus(selectedOrder.id, '완료')}
-            />
-          </OrderDetailWrapper>
-        )}
-      </OrderContainer>
+      <OrderList
+        orders={orders}
+        onOrderSelect={selectOrder}
+        onOrderComplete={(orderId) => changeOrderStatus(orderId, '완료')}
+      />
+
+      {selectedOrder && (
+        <OrderDetail
+          order={selectedOrder}
+          onComplete={() => changeOrderStatus(selectedOrder.id, '완료')}
+        />
+      )}
     </PosMainPageWrapper>
   );
 }
