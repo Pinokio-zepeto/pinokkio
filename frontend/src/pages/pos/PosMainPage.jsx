@@ -1,6 +1,27 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import OrderList from '../../components/pos/OrderList';
 import OrderDetail from '../../components/pos/OrderDetail';
+
+const PosMainPageWrapper = styled.div`
+  font-family: 'Arial', sans-serif;
+`;
+
+const OrderContainer = styled.div`
+  display: flex;
+  margin: 20px;
+`;
+
+const OrderDetailWrapper = styled.div`
+  margin-left: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+`;
+
+const OrderListContainer = styled.div`
+  width: 1000px;
+  border: 1px solid #ddd;
+`;
 
 function PosMainPage() {
   const initialOrders = [
@@ -111,21 +132,25 @@ function PosMainPage() {
   };
 
   return (
-    <div className="PosMainPage">
-      <div className="order-container">
-        <OrderList
-          orders={orders}
-          onOrderSelect={selectOrder}
-          onOrderComplete={(orderId) => changeOrderStatus(orderId, '완료')}
-        />
-        {selectedOrder && (
-          <OrderDetail
-            order={selectedOrder}
-            onComplete={() => changeOrderStatus(selectedOrder.id, '완료')}
+    <PosMainPageWrapper>
+      <OrderContainer>
+        <OrderListContainer>
+          <OrderList
+            orders={orders}
+            onOrderSelect={selectOrder}
+            onOrderComplete={(orderId) => changeOrderStatus(orderId, '완료')}
           />
+        </OrderListContainer>
+        {selectedOrder && (
+          <OrderDetailWrapper>
+            <OrderDetail
+              order={selectedOrder}
+              onComplete={() => changeOrderStatus(selectedOrder.id, '완료')}
+            />
+          </OrderDetailWrapper>
         )}
-      </div>
-    </div>
+      </OrderContainer>
+    </PosMainPageWrapper>
   );
 }
 
