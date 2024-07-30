@@ -1,74 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-
+import carouselimage from '../../assets/images/carouselimage.jpg';
 const CarouselPageStyle = styled.div`
-  padding-top: 700px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
 `;
 
 const ButtonContainer = styled.div`
-  display: flex;
+  position: relative;
+
+  /* display: flex; */
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 100%;
 `;
 
-const StyledButton = styled.div`
-  width: 100px;
-  height: 100px;
+const CarouselWindow = styled.div`
+  position: relative;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 100%;
+`;
+
+const CarouselButton = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 5px;
-  &:hover {
-    transform: translateY(-5px);
-  }
-`;
-
-const ButtonBackBox = styled.div`
-  position: absolute;
   border: 1px solid black;
   border-radius: 10px;
-  margin-top: 9px;
-
-  height: 100px;
-  width: 90px;
+  height: 12vh;
+  width: 8vw;
+  margin: 0 0.5vw;
+  font-weight: Bold;
+  font-size: 3vh;
 `;
 
-const ButtonFrontBox = styled.div`
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  height: 100px;
-  border: 1px solid black;
-  border-radius: 10px;
-  font-size: 30px;
-  cursor: pointer;
-  font-family: 'PeoplefirstNeatLoudTTF';
-  background-color: #eeeeee;
-  z-index: 1;
-
-  @font-face {
-    font-family: 'PeoplefirstNeatLoudTTF';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2406-2@1.0/PeoplefirstNeatLoudTTF.woff2')
-      format('woff2');
-    font-weight: normal;
-    font-style: normal;
-  }
-`;
-
-const ButtonInnerBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 90px;
-  height: 90px;
-  border-radius: 6px;
-  background-color: #eeeeee;
-  &:hover {
-    background-color: #add8e6;
-  }
+const CarouselImage = styled.img`
+  position: relative;
+  width: 100%;
+  height: 100%;
 `;
 
 function CarouselPage() {
@@ -112,38 +88,37 @@ function CarouselPage() {
 
   return (
     <CarouselPageStyle>
-      {result ? (
-        <div>
-          <h2>얼굴 인식 결과:</h2>
-          <p>회원 여부: {result.is_member ? '회원' : '비회원'}</p>
-          <p>나이: {result.age}</p>
-          <p>성별: {result.gender}</p>
-          {result.is_member && result.member_info && (
-            <div>
-              <h3>회원 정보:</h3>
-              <p>ID: {result.member_info.id}</p>
-              <p>등록된 나이: {result.member_info.age}</p>
-              <p>등록된 성별: {result.member_info.gender}</p>
-            </div>
-          )}
-        </div>
-      ) : (
-        <div>얼굴 인식 결과를 기다리는 중...</div>
-      )}
-      <ButtonContainer>
-        <StyledButton>
-          <ButtonFrontBox onClick={havingHere}>
-            <ButtonInnerBox>매장</ButtonInnerBox>
-          </ButtonFrontBox>
-          <ButtonBackBox />
-        </StyledButton>
-        <StyledButton>
-          <ButtonFrontBox onClick={takeAway}>
-            <ButtonInnerBox>포장</ButtonInnerBox>
-          </ButtonFrontBox>
-          <ButtonBackBox />
-        </StyledButton>
-      </ButtonContainer>
+      <CarouselImage src={carouselimage} alt="" />
+      <CarouselWindow>
+        {result ? (
+          <div>
+            <h2>얼굴 인식 결과:</h2>
+            <p>회원 여부: {result.is_member ? '회원' : '비회원'}</p>
+            <p>나이: {result.age}</p>
+            <p>성별: {result.gender}</p>
+            {result.is_member && result.member_info && (
+              <div>
+                <h3>회원 정보:</h3>
+                <p>ID: {result.member_info.id}</p>
+                <p>등록된 나이: {result.member_info.age}</p>
+                <p>등록된 성별: {result.member_info.gender}</p>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div>얼굴 인식 결과를 기다리는 중...</div>
+        )}
+        <ButtonContainer>
+          <CarouselButton onClick={havingHere}>
+            <img src="" alt="" />
+            매장
+          </CarouselButton>
+          <CarouselButton onClick={takeAway}>
+            <img src="" alt="" />
+            포장
+          </CarouselButton>
+        </ButtonContainer>
+      </CarouselWindow>
     </CarouselPageStyle>
   );
 }
