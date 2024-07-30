@@ -7,12 +7,9 @@ import MenuModal from '../../../components/kiosk/MenuModal';
 
 const MenuPageStyle = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   /* align-items: center; */
-`;
-
-const MenuPageRight = styled.div`
-  width: 90%;
 `;
 
 function MenuPage() {
@@ -50,20 +47,18 @@ function MenuPage() {
 
   return (
     <MenuPageStyle>
-      <MenuPageRight>
-        <MenuMain
-          selectedCategory={selectedCategory}
-          setSelectedMenu={setSelectedMenu}
-          setModal={setModal}
-        />
-        <Cart cartItems={cartItems} setCartItems={setCartItems} />
-      </MenuPageRight>
-
       <MenuCategory
         categories={categories}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
+      <MenuMain
+        selectedCategory={selectedCategory}
+        setSelectedMenu={setSelectedMenu}
+        setModal={setModal}
+      />
+      <Cart cartItems={cartItems} setCartItems={setCartItems} />
+
       {modal && (
         <MenuModal
           itemName={selectedMenu}

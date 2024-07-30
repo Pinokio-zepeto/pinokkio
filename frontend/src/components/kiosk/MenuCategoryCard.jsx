@@ -1,31 +1,53 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 const MCC = styled.div`
-  &:hover {
-    font-weight: bold;
-  }
-  background-image: ${(props) =>
-    props.cat === props.selectedcat ? 'linear-gradient(to top, #f9bc73 50%, white 50%)' : null};
-  margin: 10px 0;
-  font-family: 'PeoplefirstNeatLoudTTF';
+  background-color: ${(props) => (props.cat === props.selectedcat ? 'blue' : null)};
+  color: ${(props) => (props.cat === props.selectedcat ? 'white' : null)};
+  width: ${(props) => `${100 / props.showSize}%`};
+  border-radius: ${(props) => props.borderRadius};
+
+  font-size: 15px;
+  display: flex;
   text-align: center;
-  @font-face {
-    font-family: 'PeoplefirstNeatLoudTTF';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2406-2@1.0/PeoplefirstNeatLoudTTF.woff2')
-      format('woff2');
-    font-weight: normal;
-    font-style: normal;
-  }
+  align-items: center;
+  justify-content: center;
 `;
 
-function MenuCategoryCard({ cat, setselectedcat, selectedcat }) {
+function MenuCategoryCard({ cat, setselectedcat, selectedcat, showSize }) {
+  const [borderRadius, setBorderRadius] = useState('0px');
+  const mccRef = useRef(null);
+
+  useEffect(() => {
+    const updateBorderRadius = () => {
+      if (mccRef.current) {
+        const height = mccRef.current.offsetHeight;
+        setBorderRadius(`${height / 2}px`);
+      }
+    };
+
+    // Update the border-radius when the component mounts or updates
+    updateBorderRadius();
+
+    // Optionally, add event listener for window resize to handle dynamic height changes
+    window.addEventListener('resize', updateBorderRadius);
+    return () => window.removeEventListener('resize', updateBorderRadius);
+  }, [showSize]);
+
   const handleClick = () => {
     setselectedcat(cat);
   };
 
+  console.log(showSize);
   return (
-    <MCC onClick={handleClick} selectedcat={selectedcat} cat={cat}>
+    <MCC
+      ref={mccRef}
+      onClick={handleClick}
+      selectedcat={selectedcat}
+      cat={cat}
+      showSize={showSize}
+      borderRadius={borderRadius}
+    >
       {cat}
     </MCC>
   );

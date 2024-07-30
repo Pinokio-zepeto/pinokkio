@@ -137,16 +137,18 @@ function CarouselPage() {
   const moveSlider = () => {
     setTimeout(() => {
       setCarouselIndex(carouselIndex + 1);
-      console.log('carouselsize : ', carouselimages.length);
+      // console.log('carouselsize : ', carouselimages.length);
+      console.log(slideRef);
       if (carouselIndex % 2 === 1) {
+        // 홀수일 때 넘기고
         slideRef.current.style.transform = `translateX(-${15 * (carouselIndex + 1)}vw)`;
         slideRef.current.style.transition = 'all 0.5s ease-in-out';
-        console.log(carouselIndex);
+        // console.log(carouselIndex);
       } else if (
+        // 끝에 도달하고, 짝수일 때 style을 바꾼다.
         carouselIndex >= 2 * (carouselimages.length - 1) &&
         carouselIndex % (2 * (carouselimages.length - 1)) === 0
       ) {
-        console.log('reset');
         slideRef.current.style.transform = 'none';
         slideRef.current.style.transition = `none`;
         setCarouselIndex(1);
@@ -157,7 +159,8 @@ function CarouselPage() {
   return (
     <CarouselPageStyle>
       <Slider ref={slideRef}>
-        {carouselimages && carouselimages.map((image) => <CarouselImage src={image} alt="" />)}
+        {carouselimages &&
+          carouselimages.map((image, key) => <CarouselImage src={image} key={key} alt="" />)}
       </Slider>
       <CarouselWindow>
         {result ? (

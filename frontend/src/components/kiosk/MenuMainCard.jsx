@@ -8,7 +8,7 @@ const MMC = styled.div`
   background: white;
   border-radius: 5px;
   border: 1px solid;
-  font-family: 'PeoplefirstNeatLoudTTF';
+  /* font-family: 'PeoplefirstNeatLoudTTF';
   margin: 10px;
   @font-face {
     font-family: 'PeoplefirstNeatLoudTTF';
@@ -16,11 +16,25 @@ const MMC = styled.div`
       format('woff2');
     font-weight: normal;
     font-style: normal;
-  }
+  } */
 `;
 
 const Image = styled.img`
   width: 100%;
+`;
+
+const MenuContents = styled.div`
+  padding-left: 20px;
+`;
+const MenuName = styled.div`
+  font-size: 20px;
+`;
+const MenuNameEng = styled.div`
+  font-size: 10px;
+`;
+const MenuPrice = styled.div`
+  font-size: 15px;
+  font-weight: Bold;
 `;
 
 function MenuMainCard({ menu, setSelectedMenu, setModal }) {
@@ -32,7 +46,11 @@ function MenuMainCard({ menu, setSelectedMenu, setModal }) {
   return (
     <MMC onClick={handleClick}>
       <Image src={coffeeImage} />
-      {menu}
+      <MenuContents>
+        <MenuName>{menu}</MenuName>
+        <MenuNameEng>{'Americano'}</MenuNameEng>
+        <MenuPrice>{'5,000원'}</MenuPrice>
+      </MenuContents>
     </MMC>
   );
 }

@@ -6,13 +6,14 @@ import ja from 'date-fns/esm/locale/ja/index.js';
 const MM = styled.div`
   display: flex;
   flex-direction: column;
+  width: 80%;
 `;
 
 function MenuMain({ selectedCategory, setSelectedMenu, setModal }) {
   // 현재 보고 있는 페이지를 관리하는 변수
   const [nowPage, setNowPage] = useState(0);
   // showSize * showSize 배열로 보여줌
-  const [showSize, setShowSize] = useState(5);
+  const [showSize, setShowSize] = useState(3);
   // 메뉴들을 페이지에 맞게 담고 있는 배열
   const [pages, setPages] = useState([]);
 
