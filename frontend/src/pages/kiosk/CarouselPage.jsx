@@ -1,79 +1,84 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import carouselimage from '../../assets/images/carouselimage.jpg';
+import carouselimage2 from '../../assets/images/carouselimage2.jpg';
+import carouselimage3 from '../../assets/images/carouselimage3.jpg';
 
 const CarouselPageStyle = styled.div`
-  padding-top: 700px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 `;
 
 const ButtonContainer = styled.div`
-  display: flex;
-`;
-
-const StyledButton = styled.div`
-  width: 100px;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 5px;
-  &:hover {
-    transform: translateY(-5px);
-  }
-`;
-
-const ButtonBackBox = styled.div`
-  position: absolute;
-  border: 1px solid black;
-  border-radius: 10px;
-  margin-top: 9px;
-
-  height: 100px;
-  width: 90px;
-`;
-
-const ButtonFrontBox = styled.div`
   position: absolute;
   display: flex;
+  width: 100%;
   justify-content: center;
-  align-items: center;
-  width: 100px;
-  height: 100px;
-  border: 1px solid black;
-  border-radius: 10px;
-  font-size: 30px;
-  cursor: pointer;
-  font-family: 'PeoplefirstNeatLoudTTF';
-  background-color: #eeeeee;
-  z-index: 1;
-
-  @font-face {
-    font-family: 'PeoplefirstNeatLoudTTF';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2406-2@1.0/PeoplefirstNeatLoudTTF.woff2')
-      format('woff2');
-    font-weight: normal;
-    font-style: normal;
-  }
+  margin-top: 60vh;
 `;
 
-const ButtonInnerBox = styled.div`
+const CarouselWindow = styled.div`
+  position: absolute;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30vw;
+  height: 1000vh;
+`;
+
+const CarouselButton = styled.div`
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90px;
-  height: 90px;
-  border-radius: 6px;
-  background-color: #eeeeee;
-  &:hover {
-    background-color: #add8e6;
-  }
+  background-color: white;
+  border-radius: 10px;
+  height: 12vh;
+  width: 8vw;
+  margin: 0 0.5vw;
+  font-weight: Bold;
+  font-size: 3vh;
+`;
+
+const Slider = styled.div`
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const CarouselImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const CarouselMessage = styled.div`
+  position: absolute;
+
+  color: white;
+  margin-top: 20vh;
 `;
 
 function CarouselPage() {
   const navigate = useNavigate();
+  const slideRef = useRef(0);
+
   const [result, setResult] = useState(null);
+  const [carouselIndex, setCarouselIndex] = useState(0);
+
+  const [carouselimages, setCarouselimages] = useState([
+    carouselimage,
+    carouselimage2,
+    carouselimage3,
+    carouselimage,
+  ]);
 
   // useEffect(() => {
   //   /* 여기서부터 SSE 관련 코드 */
@@ -110,40 +115,80 @@ function CarouselPage() {
     navigate('/kiosk/menu', { state: { where: 'take away' } });
   };
 
+  // const slideAutoPlay = () => {
+  //   const interval = setInterval(() => {
+  //     handleSwipe(1);
+
+  //     if (carouselIndex === $slider.children.length - 1) {
+  //       setTimeout(() => {
+  //         $slider.style.transition = 'none';
+  //         currentIndex = 1;
+  //         moveOffset = (100 / slideAmount) * currentIndex;
+  //         $slider.style.transform = `translateX(-${moveOffset}%)`;
+  //       }, slideSpeed);
+  //     }
+  //   }, 3000);
+  // };
+
+  useEffect(() => {
+    moveSlider();
+  }, [carouselIndex]);
+
+  const moveSlider = () => {
+    setTimeout(() => {
+      setCarouselIndex(carouselIndex + 1);
+      console.log('carouselsize : ', carouselimages.length);
+      if (carouselIndex % 2 === 1) {
+        slideRef.current.style.transform = `translateX(-${15 * (carouselIndex + 1)}vw)`;
+        slideRef.current.style.transition = 'all 0.5s ease-in-out';
+        console.log(carouselIndex);
+      } else if (
+        carouselIndex >= 2 * (carouselimages.length - 1) &&
+        carouselIndex % (2 * (carouselimages.length - 1)) === 0
+      ) {
+        console.log('reset');
+        slideRef.current.style.transform = 'none';
+        slideRef.current.style.transition = `none`;
+        setCarouselIndex(1);
+      }
+    }, 2000);
+  };
+
   return (
     <CarouselPageStyle>
-      {result ? (
-        <div>
-          <h2>얼굴 인식 결과:</h2>
-          <p>회원 여부: {result.is_member ? '회원' : '비회원'}</p>
-          <p>나이: {result.age}</p>
-          <p>성별: {result.gender}</p>
-          {result.is_member && result.member_info && (
-            <div>
-              <h3>회원 정보:</h3>
-              <p>ID: {result.member_info.id}</p>
-              <p>등록된 나이: {result.member_info.age}</p>
-              <p>등록된 성별: {result.member_info.gender}</p>
-            </div>
-          )}
-        </div>
-      ) : (
-        <div>얼굴 인식 결과를 기다리는 중...</div>
-      )}
-      <ButtonContainer>
-        <StyledButton>
-          <ButtonFrontBox onClick={havingHere}>
-            <ButtonInnerBox>매장</ButtonInnerBox>
-          </ButtonFrontBox>
-          <ButtonBackBox />
-        </StyledButton>
-        <StyledButton>
-          <ButtonFrontBox onClick={takeAway}>
-            <ButtonInnerBox>포장</ButtonInnerBox>
-          </ButtonFrontBox>
-          <ButtonBackBox />
-        </StyledButton>
-      </ButtonContainer>
+      <Slider ref={slideRef}>
+        {carouselimages && carouselimages.map((image) => <CarouselImage src={image} alt="" />)}
+      </Slider>
+      <CarouselWindow>
+        {result ? (
+          <div>
+            <h2>얼굴 인식 결과:</h2>
+            <p>회원 여부: {result.is_member ? '회원' : '비회원'}</p>
+            <p>나이: {result.age}</p>
+            <p>성별: {result.gender}</p>
+            {result.is_member && result.member_info && (
+              <div>
+                <h3>회원 정보:</h3>
+                <p>ID: {result.member_info.id}</p>
+                <p>등록된 나이: {result.member_info.age}</p>
+                <p>등록된 성별: {result.member_info.gender}</p>
+              </div>
+            )}
+          </div>
+        ) : (
+          <CarouselMessage>얼굴 인식 결과를 기다리는 중...</CarouselMessage>
+        )}
+        <ButtonContainer>
+          <CarouselButton onClick={havingHere}>
+            <img src="" alt="" />
+            매장
+          </CarouselButton>
+          <CarouselButton onClick={takeAway}>
+            <img src="" alt="" />
+            포장
+          </CarouselButton>
+        </ButtonContainer>
+      </CarouselWindow>
     </CarouselPageStyle>
   );
 }
