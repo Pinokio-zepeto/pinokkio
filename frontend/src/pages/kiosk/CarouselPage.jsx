@@ -19,7 +19,7 @@ const ButtonContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
-  margin-top: 60vh;
+  margin-top: 30rem;
 `;
 
 const CarouselWindow = styled.div`
@@ -47,7 +47,6 @@ const CarouselButton = styled.div`
 
 const Slider = styled.div`
   display: flex;
-
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -141,7 +140,7 @@ function CarouselPage() {
       console.log(slideRef);
       if (carouselIndex % 2 === 1) {
         // 홀수일 때 넘기고
-        slideRef.current.style.transform = `translateX(-${15 * (carouselIndex + 1)}vw)`;
+        slideRef.current.style.transform = `translateX(-${13.5 * (carouselIndex + 1)}rem)`;
         slideRef.current.style.transition = 'all 0.5s ease-in-out';
         // console.log(carouselIndex);
       } else if (
