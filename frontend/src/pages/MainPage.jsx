@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import KioskMain from '../assets/images/main/kioskmain.png';
 import KioskSenior from '../assets/images/main/kiosksenior.png';
 import PosMain from '../assets/images/main/posmain.png';
-import Logo from '../components/common/LOGO';
+import LOGO from '../components/common/Logo';
 
 const MainContainer = styled.div`
   display: flex;
@@ -214,7 +214,7 @@ function MainPage() {
     <MainContainer>
       <LinksContainer>
         <LogoContainer>
-          <Logo />
+          <LOGO />
         </LogoContainer>
         <Links>
           <Link onClick={goPosLogin}>PosLogin</Link>
