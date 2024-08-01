@@ -131,28 +131,32 @@ function CarouselPage() {
   // };
 
   useEffect(() => {
-    moveSlider();
+    const interval = setInterval(() => {
+      moveSlider();
+    }, 2000);
+
+    return () => clearInterval(interval);
   }, [carouselIndex]);
 
   const moveSlider = () => {
-    setTimeout(() => {
-      setCarouselIndex(carouselIndex + 1);
-      // console.log('carouselsize : ', carouselimages.length);
+    setCarouselIndex((prevIndex) => prevIndex + 1);
+
+    if (slideRef.current) {
+      console.log(`Moving slider to index ${carouselIndex}`);
       if (carouselIndex % 2 === 1) {
-        // 홀수일 때 넘기고
         slideRef.current.style.transform = `translateX(-${13.5 * (carouselIndex + 1)}rem)`;
         slideRef.current.style.transition = 'all 0.5s ease-in-out';
-        // console.log(carouselIndex);
       } else if (
-        // 끝에 도달하고, 짝수일 때 style을 바꾼다.
         carouselIndex >= 2 * (carouselimages.length - 1) &&
         carouselIndex % (2 * (carouselimages.length - 1)) === 0
       ) {
         slideRef.current.style.transform = 'none';
-        slideRef.current.style.transition = `none`;
+        slideRef.current.style.transition = 'none';
         setCarouselIndex(1);
       }
-    }, 2000);
+    } else {
+      console.error('slideRef.current is null');
+    }
   };
 
   return (

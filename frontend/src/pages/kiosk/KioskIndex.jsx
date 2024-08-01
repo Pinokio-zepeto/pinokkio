@@ -38,8 +38,8 @@ const KioskInline = styled.div`
   width: 27rem;
   /* max-height: 35rem; */
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  // flex-direction: column;
+  // align-items: center;
 `;
 
 function KioskIndex() {
