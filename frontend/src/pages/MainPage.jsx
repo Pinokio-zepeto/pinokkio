@@ -203,11 +203,15 @@ function MainPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === items.length - 1 ? 0 : prevIndex + 1));
+    if (currentIndex < items.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
   };
 
   const goToPrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? items.length - 1 : prevIndex - 1));
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
   };
 
   return (
