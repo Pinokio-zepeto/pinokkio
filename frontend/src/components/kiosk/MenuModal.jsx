@@ -6,10 +6,10 @@ const ModalBg = styled.div`
   background: black;
   opacity: 0.5;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
+  display: flex;
+  top: 1rem;
+  width: 27rem;
+  height: 47rem;
 `;
 const Modal = styled.div`
   background: white;

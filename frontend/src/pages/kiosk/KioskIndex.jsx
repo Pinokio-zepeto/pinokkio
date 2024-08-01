@@ -21,18 +21,19 @@ const KioskForm = styled.div`
 const KioskOutline = styled.div`
   background-color: black;
   height: 58rem;
-  border-radius: 2vh;
+  border-radius: 1rem;
   width: 28.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 2vh;
+  padding-top: 1rem;
 `;
 
 const KioskInline = styled.div`
   background-color: white;
   /* height: 95vh; */
   height: 47rem;
+  max-height: 47rem;
   /* width: 30vw; */
   width: 27rem;
   /* max-height: 35rem; */
