@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import carouselimage from '../../assets/images/carouselimage.jpg';
 import carouselimage2 from '../../assets/images/carouselimage2.jpg';
 import carouselimage3 from '../../assets/images/carouselimage3.jpg';
+import menudata from '../../data/MenuData.json';
 
 const CarouselPageStyle = styled.div`
   display: flex;
@@ -137,7 +138,6 @@ function CarouselPage() {
     setTimeout(() => {
       setCarouselIndex(carouselIndex + 1);
       // console.log('carouselsize : ', carouselimages.length);
-      console.log(slideRef);
       if (carouselIndex % 2 === 1) {
         // 홀수일 때 넘기고
         slideRef.current.style.transform = `translateX(-${13.5 * (carouselIndex + 1)}rem)`;

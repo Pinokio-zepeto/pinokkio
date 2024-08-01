@@ -228,5 +228,3 @@ function SignUp() {
 }
 
 export default SignUp;
-
-const JobList = ['상담원', '점장'];

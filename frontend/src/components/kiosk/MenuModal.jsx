@@ -17,16 +17,20 @@ const Modal = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
-  height: 500px;
+  width: 54%;
+  height: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
+const ModalImage = styled.img`
+  width: 100%;
+`;
 
 function MenuModal({ itemName, cartItems, setCartItems, setModal }) {
   const [count, setCount] = useState(0);
+
   const addCart = () => {
     console.log(itemName);
     for (var i = 0; i < cartItems.length; i++) {
@@ -56,8 +60,8 @@ function MenuModal({ itemName, cartItems, setCartItems, setModal }) {
   return (
     <ModalBg>
       <Modal>
-        <p>이미지</p>
-        <h1>음식 종류</h1>
+        <ModalImage />
+        <h1>{itemName}</h1>
         <div>
           <button onClick={() => setCount(count + 1)}>+</button>
           <li>{count}</li>

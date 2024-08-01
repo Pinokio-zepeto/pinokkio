@@ -36,7 +36,7 @@ const KioskBody = styled.div`
   flex-direction: column;
   align-items: center;
   overflow: scroll;
-  height: 30rem;
+  height: calc(30rem - 2px);
   &::-webkit-scrollbar {
     display: none;
   }
@@ -67,6 +67,8 @@ function MenuPage() {
 
   const [modal, setModal] = useState(false);
 
+  const getSelectedMenuData = () => {};
+
   useEffect(() => {
     getCategory();
   }, []);
@@ -96,7 +98,7 @@ function MenuPage() {
 
       {modal && (
         <MenuModal
-          itemName={selectedMenu}
+          selectedItem={selectedMenu}
           cartItems={cartItems}
           setCartItems={setCartItems}
           setModal={setModal}

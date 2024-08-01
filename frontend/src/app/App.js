@@ -16,8 +16,6 @@ import { useSelector } from 'react-redux';
 
 const ProtectedRoute = ({ type }) => {
   const user = useSelector((state) => state.user.user);
-  console.log('start');
-  console.log(type);
   if (!user || user.type !== type) {
     return <Navigate to="/" />;
   }
@@ -27,9 +25,7 @@ const ProtectedRoute = ({ type }) => {
 function App() {
   const user = useSelector((state) => state.user.user);
 
-  useEffect(() => {
-    console.log(user);
-  });
+  useEffect(() => {});
 
   return (
     <>
