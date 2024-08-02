@@ -1,5 +1,4 @@
-// import axios from './axios';
-import axios from 'axios'; // 인스턴스와 구분하기 위해 대문자 사용
+import axios from './Axios'; // 인스턴스와 구분하기 위해 대문자 사용
 
 /*
 변수 네이밍 규칙

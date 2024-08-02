@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import MenuMainCard from './MenuMainCard';
 import styled from 'styled-components';
+import MenuData from '../../data/MenuData.json';
 
 const MM = styled.div`
   display: flex;
@@ -27,8 +28,13 @@ function MenuMain({ selectedCategory, setSelectedMenu, setModal }) {
 
     /* 아래는 임시 코드(추후 axios로 변경 예정) */
     const list = [];
-    for (var i = 0; i < 10; i++) {
-      list.push(selectedCategory + (i + 1));
+    for (const category in MenuData) {
+      if (category === selectedCategory) {
+        console.log(category);
+        for (var i = 0; i < 10; i++) {
+          list.push(selectedCategory + (i + 1));
+        }
+      }
     }
 
     const pagesLength = list.length / showSize;

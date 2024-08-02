@@ -102,10 +102,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault(); // 기본 폼 제출 방지
 
-    const res = await postLoginPos(id.current, password.current);
-
-    try {
-    } catch {}
+    // const res = await postLoginPos(id.current, password.current);
 
     if (id === 'advisor') {
       navigate('/advisor');

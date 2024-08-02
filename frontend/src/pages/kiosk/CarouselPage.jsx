@@ -134,7 +134,10 @@ function CarouselPage() {
     const interval = setInterval(() => {
       moveSlider();
     }, 2000);
-
+    /*
+    페이지가 넘어가고 컴포넌트가 없는데 계속 컴포넌트를 찾아서 style을 바꿔주려니깐 에러가 뜬다.
+    때문에 clearInterval을 통해 언마운트되면 지워줘야 한다.
+    */
     return () => clearInterval(interval);
   }, [carouselIndex]);
 
@@ -142,7 +145,7 @@ function CarouselPage() {
     setCarouselIndex((prevIndex) => prevIndex + 1);
 
     if (slideRef.current) {
-      console.log(`Moving slider to index ${carouselIndex}`);
+      // console.log(`Moving slider to index ${carouselIndex}`);
       if (carouselIndex % 2 === 1) {
         slideRef.current.style.transform = `translateX(-${13.5 * (carouselIndex + 1)}rem)`;
         slideRef.current.style.transition = 'all 0.5s ease-in-out';
@@ -155,7 +158,7 @@ function CarouselPage() {
         setCarouselIndex(1);
       }
     } else {
-      console.error('slideRef.current is null');
+      // console.error('slideRef.current is null');
     }
   };
 

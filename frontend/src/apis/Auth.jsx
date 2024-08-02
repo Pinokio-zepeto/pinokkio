@@ -1,43 +1,65 @@
-import Axios from 'axios'; // 인스턴스와 구분하기 위해 대문자 사용
-
+import axios from './Axios';
 /*
 변수 네이밍 규칙
+0. camelCase로 쓴다.
 1. 행위를 맨 앞에 쓴다.
-2. 가져오는 대상을 다음에 쓴다.
-3. 가져오는 대상이 리스트라면 복수형으로 쓴다.
-4. 다른 변수(parameter)를 이용해서 행위를 한다면 By를 사용하여 네이밍한다.
-5. 다른 변수가 여러 개라면 그냥 붙여서 쓴다.
+2. Auth의 API는 parameter가 없으므로 그냥 url을 이어서 쓴다.
 */
-const baseURL = 'http://localhost:8080';
 
-const axios = Axios.create({
-  baseURL: baseURL,
-});
-
-export const postRegisterTeller = (code, username, password, confirmPassword) => {
-  axios
-    .post('/api/register/teller', {
-      id: code,
+export const postRegisterTeller = async (code, username, password, confirmPassword) => {
+  try {
+    const response = await axios.post('/api/register/teller', {
+      code: code,
       username: username,
       password: password,
       confirmPassword: confirmPassword,
-    })
-    .then((response) => {
-      // response
-
-      return response;
-    })
-    .catch((error) => {
-      // 오류발생시 실행
-    })
-    .then(() => {
-      // 항상 실행
     });
+    return response.data;
+  } catch (error) {
+    console.error('register teller failed:', error);
+    throw error;
+  }
 };
 
-export const postRegisterPos = () => {};
+export const postRegisterPos = async (code, username, password, confirmPassword) => {
+  try {
+    const response = await axios.post('/api/register/pos', {
+      code: code,
+      username: username,
+      password: password,
+      confirmPassword: confirmPassword,
+    });
+    return response.data;
+  } catch (error) {
+    console.error('register pos failed:', error);
+    throw error;
+  }
+};
 
-export const postRegisterKiosk = () => {};
+export const postRegisterKiosk = async (posId) => {
+  try {
+    const response = await axios.post('/api/register/kiosk', {
+      posId: posId,
+    });
+    return response.data;
+  } catch (error) {
+    console.error('register kiosk failed:', error);
+    throw error;
+  }
+};
+
+export const postLoginTeller = async (username, password) => {
+  try {
+    const response = await axios.post('/api/login/teller', {
+      username: username,
+      password: password,
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Teller login failed:', error);
+    throw error;
+  }
+};
 
 export const postLoginPos = async (username, password) => {
   try {
@@ -45,9 +67,22 @@ export const postLoginPos = async (username, password) => {
       username: username,
       password: password,
     });
-    return response.data; // 인증 토큰이 반환될 것으로 가정
+    return response.data;
   } catch (error) {
-    console.error('Login failed:', error);
+    console.error('Pos login failed:', error);
+    throw error;
+  }
+};
+
+export const postLoginKiosk = async (username, password) => {
+  try {
+    const response = await axios.post('/api/login/kiosk', {
+      username: username,
+      password: password,
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Kiosk login failed:', error);
     throw error;
   }
 };
