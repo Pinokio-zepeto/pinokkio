@@ -17,41 +17,46 @@ const Modal = styled.div`
   background: white;
   width: 80%;
   max-width: 400px;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 30px;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
 `;
 
 const Title = styled.h2`
   margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
 `;
 
 const InputDisplay = styled.div`
   width: 100%;
-  padding: 10px;
-  font-size: 24px;
+  padding: 20px;
+  font-size: 36px;
   text-align: center;
   margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
 `;
 
 const NumberPad = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 15px;
   width: 100%;
 `;
 
 const Button = styled.button`
   padding: 15px;
-  font-size: 20px;
+  font-size: 22px;
   border: none;
-  background-color: #f0f0f0;
-  border-radius: 5px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
   cursor: pointer;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 
   &:hover {
     background-color: #e0e0e0;
