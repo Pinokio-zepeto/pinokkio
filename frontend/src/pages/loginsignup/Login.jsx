@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import LOGO from '../../components/common/Logo';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../features/user/userSlice';
+import { postLoginPos } from '../../apis/Auth';
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -98,8 +99,11 @@ function Login() {
     navigate('/signup');
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault(); // 기본 폼 제출 방지
+
+    // const res = await postLoginPos(id.current, password.current);
+
     if (id === 'advisor') {
       navigate('/advisor');
       const userData = { name: id, type: 'advisor' };

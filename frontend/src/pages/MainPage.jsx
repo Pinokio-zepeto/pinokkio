@@ -126,7 +126,7 @@ const IndicatorContainer = styled.div`
 const Indicator = styled.div`
   width: 10px;
   height: 10px;
-  background-color: ${({ isActive }) => (isActive ? '#0056b3' : '#ccc')};
+  background-color: ${({ $isActive }) => ($isActive ? '#0056b3' : '#ccc')};
   border-radius: 50%;
   cursor: pointer;
 `;
@@ -240,7 +240,7 @@ function MainPage() {
           {items.map((_, index) => (
             <Indicator
               key={index}
-              isActive={index === currentIndex}
+              $isActive={index === currentIndex}
               onClick={() => setCurrentIndex(index)}
             />
           ))}

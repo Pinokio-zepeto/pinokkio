@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import MenuCategory from '../../../components/kiosk/MenuCategory';
 import MenuMain from '../../../components/kiosk/MenuMain';
 import Cart from '../../../components/kiosk/Cart';
-import MenuModal from '../../../components/kiosk/MenuModal';
+import MenuModal from '../../../components/kiosk/modal/MenuModal';
+import MenuData from '../../../data/MenuData.json';
 
 const KioskHeader = styled.div`
   border-bottom: 1px #d9d9d9 solid;
@@ -36,42 +37,35 @@ const KioskBody = styled.div`
   flex-direction: column;
   align-items: center;
   overflow: scroll;
-  height: 30rem;
+  height: calc(30rem - 2px);
   &::-webkit-scrollbar {
     display: none;
   }
 `;
 
 function MenuPage() {
-  const [categories, setCategories] = useState([
-    'NEW',
-    '에스프레소',
-    '콜드 브루',
-    '블론드',
-    '디카페인 커피',
-    '리저브 에스프레소',
-    '리저브 드립',
-    '티바나',
-    '피지오',
-    '리프레셔',
-    '블렌디드',
-    '브루드 커피',
-    '기타',
-    '병음료',
-  ]);
+  const [categories, setCategories] = useState([]);
   const [menus, setMenus] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('NEW');
-  const [selectedMenu, setSelectedMenu] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedMenu, setSelectedMenu] = useState(null);
 
   const [cartItems, setCartItems] = useState([]);
 
   const [modal, setModal] = useState(false);
 
+  const getSelectedMenuData = () => {};
+
   useEffect(() => {
     getCategory();
   }, []);
 
+  useEffect(() => {
+    setSelectedCategory(categories[0]);
+  }, [categories]);
+
   const getCategory = () => {
+    setCategories(Object.keys(MenuData));
+
     /* axios를 이용하여 category를 가져온다. */
   };
 
@@ -96,7 +90,7 @@ function MenuPage() {
 
       {modal && (
         <MenuModal
-          itemName={selectedMenu}
+          selectedItem={selectedMenu}
           cartItems={cartItems}
           setCartItems={setCartItems}
           setModal={setModal}
