@@ -34,12 +34,11 @@ const Title = styled.h2`
 
 const InputDisplay = styled.div`
   width: 100%;
-  padding: 20px;
+  padding: 10px 0;
   font-size: 36px;
   text-align: center;
   margin-bottom: 20px;
-  border: 2px solid #ddd;
-  border-radius: 10px;
+  border-bottom: 2px solid #ddd;
 `;
 
 const NumberPad = styled.div`
@@ -50,11 +49,12 @@ const NumberPad = styled.div`
 `;
 
 const Button = styled.button`
-  padding: 15px;
+  width: 60px;
+  height: 60px;
   font-size: 22px;
   border: none;
   background-color: #f7f7f7;
-  border-radius: 10px;
+  border-radius: 50%;
   cursor: pointer;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 
