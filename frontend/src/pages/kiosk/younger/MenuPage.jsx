@@ -64,6 +64,7 @@ function MenuPage() {
   }, [categories]);
 
   const getCategory = () => {
+    // const cate = await getCategories(posId)
     setCategories(Object.keys(MenuData));
 
     /* axios를 이용하여 category를 가져온다. */

@@ -6,7 +6,7 @@ import axios from './Axios';
 2. Auth의 API는 parameter가 없으므로 그냥 url을 이어서 쓴다.
 */
 
-export const postRegisterTeller = async (code, username, password, confirmPassword) => {
+export const postRegisterAdvisor = async (code, username, password, confirmPassword) => {
   try {
     const response = await axios.post('/api/register/teller', {
       code: code,
@@ -48,7 +48,7 @@ export const postRegisterKiosk = async (posId) => {
   }
 };
 
-export const postLoginTeller = async (username, password) => {
+export const postLoginAdvisor = async (username, password) => {
   try {
     const response = await axios.post('/api/login/teller', {
       username: username,
