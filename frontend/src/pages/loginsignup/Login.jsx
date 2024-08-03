@@ -6,7 +6,8 @@ import styled from 'styled-components';
 import LOGO from '../../components/common/Logo';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../features/user/userSlice';
-import { postLoginKiosk, postLoginPos, postLoginAdvisor } from '../../apis/Auth';
+import { postLoginKiosk, postLoginPos, postLoginAdvisor, getKioskInfo } from '../../apis/Auth';
+import axios from '../../apis/Axios';
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -109,36 +110,35 @@ function Login() {
 
     if (usertype === 'advisor') {
       const res = await postLoginAdvisor(id, password);
+      const { accessToken } = res;
+      axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
       navigate('/advisor');
       const userData = { name: id, type: 'advisor' };
       dispatch(setUser(userData));
     } else if (usertype === 'pos') {
       const res = await postLoginPos(id, password);
+      const { accessToken } = res;
+      axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
       navigate('/pos');
       const userData = { name: id, type: 'pos' };
       dispatch(setUser(userData));
     } else if (usertype === 'kiosk') {
       const res = await postLoginKiosk(id, password);
-      navigate('/kiosk');
-      const userData = { name: id, type: 'kiosk' };
+      // accessToken을 axios instance의 header에 넣는다.
+      const { accessToken, refreshToken } = res;
+      axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+      localStorage.setItem('refreshToken', refreshToken);
+      // kiosk가 어느 pos의 것인지를 알아야 메뉴 추천 및 부가 기능을 구현하기 때문에 posId를 가져온다.
+      const kioskInfo = await getKioskInfo();
+      console.log(kioskInfo);
+      const userData = { user: id, type: 'kiosk', posId: kioskInfo.posId };
       dispatch(setUser(userData));
+      navigate('/kiosk');
+
+      // console.log(res);
     } else {
       console.log('user type을 선택하지 않았습니다.');
     }
-
-    // if (id === 'advisor') {
-    //   navigate('/advisor');
-    //   const userData = { name: id, type: 'advisor' };
-    //   dispatch(setUser(userData));
-    // } else if (id === 'pos') {
-    //   navigate('/pos');
-    //   const userData = { name: id, type: 'pos' };
-    //   dispatch(setUser(userData));
-    // } else {
-    //   navigate('/kiosk');
-    //   const userData = { name: id, type: 'kiosk' };
-    //   dispatch(setUser(userData));
-    // }
   };
 
   return (

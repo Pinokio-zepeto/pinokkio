@@ -86,3 +86,13 @@ export const postLoginKiosk = async (username, password) => {
     throw error;
   }
 };
+
+export const getKioskInfo = async () => {
+  try {
+    const response = await axios.get('/api/kiosk/my-info');
+    return response.data;
+  } catch (error) {
+    console.error('get Kiosk info failed:', error);
+    throw error;
+  }
+};

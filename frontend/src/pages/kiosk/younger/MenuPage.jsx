@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import styled from 'styled-components';
 import MenuCategory from '../../../components/kiosk/MenuCategory';
 import MenuMain from '../../../components/kiosk/MenuMain';
 import Cart from '../../../components/kiosk/Cart';
 import MenuModal from '../../../components/kiosk/modal/MenuModal';
-import MenuData from '../../../data/MenuData.json';
+// import MenuData from '../../../data/MenuData.json';
+import { useSelector } from 'react-redux';
+import { getCategories } from '../../../apis/Category';
 
 const KioskHeader = styled.div`
   border-bottom: 1px #d9d9d9 solid;
@@ -51,11 +53,13 @@ function MenuPage() {
 
   const [cartItems, setCartItems] = useState([]);
 
+  const userData = useSelector((store) => store.user);
+
   const [modal, setModal] = useState(false);
 
   const getSelectedMenuData = () => {};
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getCategory();
   }, []);
 
@@ -63,9 +67,13 @@ function MenuPage() {
     setSelectedCategory(categories[0]);
   }, [categories]);
 
-  const getCategory = () => {
-    // const cate = await getCategories(posId)
-    setCategories(Object.keys(MenuData));
+  const getCategory = async () => {
+    console.log(' get category start');
+    console.log(userData);
+    const cate = await getCategories(userData.posId);
+
+    console.log(cate);
+    setCategories(cate);
 
     /* axios를 이용하여 category를 가져온다. */
   };
