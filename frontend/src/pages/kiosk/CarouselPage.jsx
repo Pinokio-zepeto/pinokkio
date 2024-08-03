@@ -5,6 +5,7 @@ import carouselimage from '../../assets/images/carouselimage.jpg';
 import carouselimage2 from '../../assets/images/carouselimage2.jpg';
 import carouselimage3 from '../../assets/images/carouselimage3.jpg';
 import menudata from '../../data/MenuData.json';
+import NumberModal from '../../components/kiosk/modal/NumberModal';
 
 const CarouselPageStyle = styled.div`
   display: flex;
@@ -64,6 +65,19 @@ const CarouselMessage = styled.div`
 
   color: white;
   margin-top: 20vh;
+`;
+
+const ModalButton = styled.button`
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 `;
 
 function CarouselPage() {
@@ -162,6 +176,13 @@ function CarouselPage() {
     }
   };
 
+  const [showModal, setShowModal] = useState(false);
+
+  const handleConfirm = (number) => {
+    console.log('입력된 번호:', number);
+    // 여기에 번호 처리 로직을 추가할 수 있습니다.
+  };
+
   return (
     <CarouselPageStyle>
       <Slider ref={slideRef}>
@@ -198,6 +219,8 @@ function CarouselPage() {
           </CarouselButton>
         </ButtonContainer>
       </CarouselWindow>
+      <ModalButton onClick={() => setShowModal(true)}>번호 입력 모달 열기</ModalButton>
+      {showModal && <NumberModal setModal={setShowModal} onConfirm={handleConfirm} />}
     </CarouselPageStyle>
   );
 }
