@@ -43,20 +43,21 @@ export const getItemByItemId = (posId, itemId) => {
     });
 };
 
-export const getItems = (posId) => {
-  axios
-    .post('/api/pos/:posId/categories', { params: { posId: posId } })
-    .then((response) => {
-      // response
-
-      return response;
-    })
-    .catch((error) => {
-      // 오류발생시 실행
-    })
-    .then(() => {
-      // 항상 실행
-    });
+export const getItems = async (posId) => {
+  try {
+    const response = await axios.get(`/api/pos/${posId}/items`, {
+      headers: {
+        // 'header'를 'headers'로 변경
+        accept: 'application/json',
+        Authorization:
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdGFyYnVja3NAZXhhbXBsZS5jb20iLCJyb2xlIjoiUk9MRV9QT1MiLCJjYXRlZ29yeSI6ImFjY2VzcyIsImlzcyI6InBpbm9ra2lvIiwiaWF0IjoxNzIyNTg1MzA1LCJleHAiOjE3MjI1ODUzNjV9.sP0YuPkbB4RQBFuBq_iTqBvS06T-JUoQKNE8DgiLrQA',
+      },
+    }); // Adjust endpoint as needed
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch items:', error);
+    throw error;
+  }
 };
 
 export const getItemsByKeyword = (posId, keyword) => {
