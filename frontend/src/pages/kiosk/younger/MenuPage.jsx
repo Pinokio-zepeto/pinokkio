@@ -1,10 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import MenuCategory from '../../../components/kiosk/MenuCategory';
 import MenuMain from '../../../components/kiosk/MenuMain';
 import Cart from '../../../components/kiosk/Cart';
 import MenuModal from '../../../components/kiosk/modal/MenuModal';
-import MenuData from '../../../data/MenuData.json';
+// import MenuData from '../../../data/MenuData.json';
+import { useSelector } from 'react-redux';
+import { getCategories } from '../../../apis/Category';
+import { getItemsByCategoryId } from '../../../apis/Item';
+
+const MenuPageStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #efefef;
+  min-width: 27rem;
+  /* align-items: center; */
+`;
 
 const KioskHeader = styled.div`
   border-bottom: 1px #d9d9d9 solid;
@@ -23,14 +35,6 @@ const Logo = styled.div`
   padding-top: 1vh;
 `;
 
-const MenuPageStyle = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #efefef;
-  /* align-items: center; */
-`;
-
 const KioskBody = styled.div`
   width: 100%;
   display: flex;
@@ -45,53 +49,93 @@ const KioskBody = styled.div`
 
 function MenuPage() {
   const [categories, setCategories] = useState([]);
+  const categoriesMounted = useRef(false);
+
   const [menus, setMenus] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const selectedCategoryMounted = useRef(false);
   const [selectedMenu, setSelectedMenu] = useState(null);
 
   const [cartItems, setCartItems] = useState([]);
 
+  const userData = useSelector((store) => store.user);
+
   const [modal, setModal] = useState(false);
 
-  const getSelectedMenuData = () => {};
-
   useEffect(() => {
+    console.log('first rendering');
     getCategory();
+
+    // 처음 렌더링 했을 때 순서 getCategory ->  useEffect(categories) -> useEffect(selectedCategory)
   }, []);
 
+  const getCategory = async () => {
+    /* axios를 이용하여 category를 가져온다. */
+    const category_data = await getCategories(userData.typeInfo.posId);
+    console.log('received categories datas : ', category_data);
+    setCategories(category_data.responseList);
+  };
+
   useEffect(() => {
-    setSelectedCategory(categories[0]);
+    if (!categoriesMounted.current) {
+      console.log('categories mounted : ');
+      categoriesMounted.current = true;
+    } else {
+      console.log('categories updated');
+      console.log(categories);
+      setSelectedCategory(categories[0]);
+    }
   }, [categories]);
 
-  const getCategory = () => {
-    // const cate = await getCategories(posId)
-    setCategories(Object.keys(MenuData));
+  useEffect(() => {
+    if (!selectedCategoryMounted.current) {
+      console.log('selectedCategory mounted : ');
+      selectedCategoryMounted.current = true;
+    } else {
+      console.log('selectedCategory updated');
+      console.log(selectedCategory);
+      getMenu();
+    }
+  }, [selectedCategory]);
 
-    /* axios를 이용하여 category를 가져온다. */
+  const getMenu = async () => {
+    if (selectedCategory && userData) {
+      const menu_data = await getItemsByCategoryId(userData.typeInfo.posId, selectedCategory.id);
+      console.log('received menus datas : ', menu_data);
+      menu_data.responseList.map((menu) => {
+        menu['count'] = 0;
+      });
+      setMenus(menu_data.responseList);
+    }
   };
 
   return (
     <MenuPageStyle>
       <KioskHeader>
         <Logo>Pinokio</Logo>
-        <MenuCategory
-          categories={categories}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-        />
+        {categories.length > 0 && selectedCategory && (
+          <MenuCategory
+            categories={categories}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+          />
+        )}
       </KioskHeader>
       <KioskBody>
-        <MenuMain
-          selectedCategory={selectedCategory}
-          setSelectedMenu={setSelectedMenu}
-          setModal={setModal}
-        />
+        {menus.length > 0 && selectedCategory && (
+          <MenuMain
+            selectedCategory={selectedCategory}
+            setSelectedMenu={setSelectedMenu}
+            setModal={setModal}
+            menus={menus}
+          />
+        )}
       </KioskBody>
       <Cart cartItems={cartItems} setCartItems={setCartItems} />
 
       {modal && (
         <MenuModal
-          selectedItem={selectedMenu}
+          item={selectedMenu}
           cartItems={cartItems}
           setCartItems={setCartItems}
           setModal={setModal}

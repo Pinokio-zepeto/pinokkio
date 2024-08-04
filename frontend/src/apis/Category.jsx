@@ -22,9 +22,7 @@ export const deleteCategory = async (posId, categoryId) => {
 
 export const getCategories = async (posId) => {
   try {
-    const response = await axios.get('/api/pos/:posId/categories', {
-      params: { posId: posId },
-    });
+    const response = await axios.get(`/api/pos/${posId}/categories`);
     return response.data;
   } catch (error) {
     console.error('get categories failed:', error);
@@ -34,7 +32,7 @@ export const getCategories = async (posId) => {
 
 export const createCategory = async (posId, name) => {
   try {
-    const response = await axios.get('/api/pos/:posId/categories', {
+    const response = await axios.post('/api/pos/:posId/categories', {
       params: { posId: posId },
       name: name,
     });

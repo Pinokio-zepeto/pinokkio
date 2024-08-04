@@ -34,7 +34,7 @@ function CartTotal({ cartItems }) {
     let ttl = 0;
     for (var i = 0; i < cartItems.length; i++) {
       console.log(cartItems);
-      ttl += cartItems[i].itemPrice * cartItems[i].itemCount;
+      ttl += cartItems[i].price * cartItems[i].count;
     }
     setTotalPrice(ttl);
   };

@@ -15,4 +15,8 @@ const axios = Axios.create({
   baseURL: baseURL,
 });
 
+// accessToken, refreshToken을 사용하려면 withCredential = true 해주어야 한다.
+// 이렇게 하면 전역에서 withCredential = true가 된다.
+axios.defaults.withCredentials = true;
+
 export default axios;

@@ -15,7 +15,7 @@ import AdvIndex from '../pages/advisor/AdvIndex';
 import { useSelector } from 'react-redux';
 
 const ProtectedRoute = ({ type }) => {
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user);
   if (!user || user.type !== type) {
     return <Navigate to="/" />;
   }
