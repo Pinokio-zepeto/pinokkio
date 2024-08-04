@@ -48,15 +48,18 @@ function MenuCategory({ categories, selectedCategory, setSelectedCategory }) {
         {'<'}
       </Arrow>
       <MenuCategoryCards>
-        {categories.slice(nowFirst, nowFirst + showSize).map((cat, index) => (
-          <MenuCategoryCard
-            key={index}
-            cat={cat}
-            setselectedcat={setSelectedCategory}
-            selectedcat={selectedCategory}
-            showSize={showSize}
-          />
-        ))}
+        {categories &&
+          categories
+            .slice(nowFirst, nowFirst + showSize)
+            .map((cat, index) => (
+              <MenuCategoryCard
+                key={index}
+                cat={cat}
+                setselectedcat={setSelectedCategory}
+                selectedcat={selectedCategory}
+                showSize={showSize}
+              />
+            ))}
       </MenuCategoryCards>
 
       <Arrow onClick={increaseNowFirst}>{'>'}</Arrow>

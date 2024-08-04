@@ -130,8 +130,10 @@ function Login() {
       localStorage.setItem('refreshToken', refreshToken);
       // kiosk가 어느 pos의 것인지를 알아야 메뉴 추천 및 부가 기능을 구현하기 때문에 posId를 가져온다.
       const kioskInfo = await getKioskInfo();
+      console.log('kioskinfo');
       console.log(kioskInfo);
-      const userData = { user: id, type: 'kiosk', posId: kioskInfo.posId };
+      const userData = { user: id, type: 'kiosk', typeInfo: kioskInfo };
+      console.log(userData);
       dispatch(setUser(userData));
       navigate('/kiosk');
 

@@ -82,25 +82,18 @@ export const getItemsByKeyword = (posId, keyword) => {
     });
 };
 
-export const getItemsByCategoryId = (posId, categoryId) => {
-  axios
-    .get('/api/pos/:posId/items/categories/:categoryId', {
-      params: {
-        posId: posId,
-        categoryId: categoryId,
-      },
-    })
-    .then((response) => {
-      // response
-
-      return response;
-    })
-    .catch((error) => {
-      // 오류발생시 실행
-    })
-    .then(() => {
-      // 항상 실행
-    });
+export const getItemsByCategoryId = async (posId, categoryId) => {
+  // console.log('axios');
+  // console.log(axios.defaults.headers.common['Authorization']);
+  // console.log(posId);
+  // console.log(categoryId);
+  try {
+    const response = await axios.get(`/api/pos/${posId}/items/categories/${categoryId}`);
+    return response.data;
+  } catch (error) {
+    console.error('get menus by category failed:', error);
+    throw error;
+  }
 };
 
 export const postItem = (itemData) => {

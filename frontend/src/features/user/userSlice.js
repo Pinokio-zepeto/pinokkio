@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   user: null,
   type: null,
-  posId: null,
+  typeInfo: null,
 };
 
 const userSlice = createSlice({
@@ -13,12 +13,12 @@ const userSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload.user;
       state.type = action.payload.type;
-      state.posId = action.payload.posId;
+      state.typeInfo = action.payload.typeInfo;
     },
     clearUser: (state) => {
       state.user = null;
       state.type = null;
-      state.posId = null;
+      state.typeInfo = null;
     },
   },
 });

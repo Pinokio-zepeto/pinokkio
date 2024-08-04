@@ -71,21 +71,25 @@ const CancelButton = styled.div``;
 const PutButton = styled.div``;
 
 function MenuModal({ item, cartItems, setCartItems, setModal }) {
+  // modal 창에서 선택한 수량
   const [count, setCount] = useState(1);
 
   const addCart = () => {
-    console.log(item.itemName);
+    console.log(item.name);
+
     for (var i = 0; i < cartItems.length; i++) {
-      if (cartItems[i].itemName === item.itemName) {
+      // 만약 이미 Cart에 담겨있는 상품이라면 count 수만 증가시키고,
+      if (cartItems[i].name === item.name) {
         const updatedCartItems = [...cartItems];
-        updatedCartItems[i].itemCount += count;
+        updatedCartItems[i].count += count;
         setCartItems(updatedCartItems);
         setModal(false);
         return;
       }
     }
-
+    // 없는 상품이라면 리스트에 새롭게 추가한다.
     const updatedCartItems = [...cartItems, item];
+    updatedCartItems[updatedCartItems.length - 1]['count'] = count;
     setCartItems(updatedCartItems);
     setModal(false);
 
@@ -98,10 +102,10 @@ function MenuModal({ item, cartItems, setCartItems, setModal }) {
         <ImageContainer>
           <ModalImage src={coffeeimage} />
         </ImageContainer>
-        <MenuTitleKo>{item.itemName}</MenuTitleKo>
+        <MenuTitleKo>{item.name}</MenuTitleKo>
         <MenuTitleEn></MenuTitleEn>
         <PriceAndButtons>
-          <MenuPrice>{item.itemPrice}</MenuPrice>
+          <MenuPrice>{item.price}</MenuPrice>
           <UpDownButtons>
             <UpButton onClick={() => setCount(count + 1)}>+</UpButton>
             <MenuCount>{count}</MenuCount>
