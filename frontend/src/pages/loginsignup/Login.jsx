@@ -110,10 +110,7 @@ function Login() {
 
     try {
       let res;
-      const kioskInfo = await getKioskInfo();
-
       // usertype이 'kiosk'일 때만 kioskInfo를 가져옵니다.
-
       // 로그인 API 호출
       if (usertype === 'pos') {
         res = await postLoginPos(id, password);
@@ -122,6 +119,7 @@ function Login() {
         res = await postLoginAdvisor(id, password);
       } else if (usertype === 'kiosk') {
         res = await postLoginKiosk(id, password);
+        const kioskInfo = await getKioskInfo();
       }
       // 다른 usertype 처리 로직 추가
 

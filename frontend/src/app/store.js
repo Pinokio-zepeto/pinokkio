@@ -13,9 +13,13 @@ import {
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 
 import userReducer from '../features/user/userSlice';
+import roomReducer from '../features/advisor/RoomSlice';
+import advisorReducer from '../features/advisor/AdvisorSlice';
 
 const rootReducer = {
   user: userReducer,
+  room: roomReducer,
+  advisor: advisorReducer,
 };
 
 const persistConfig = {
