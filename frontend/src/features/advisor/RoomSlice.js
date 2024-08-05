@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const roomsSlice = createSlice({
-  name: 'rooms',
+const roomSlice = createSlice({
+  name: 'room',
   initialState: {
-    roomsData: [
+    roomData: [
       {
         id: 1,
         isActive: false,
@@ -33,7 +33,7 @@ const roomsSlice = createSlice({
   reducers: {
     setRoomActive: (state, action) => {
       const { id, roomToken, roomId } = action.payload;
-      const room = state.roomsData.find((room) => room.id === id);
+      const room = state.roomData.find((room) => room.id === id);
       if (room) {
         room.isActive = true;
         room.roomToken = roomToken;
@@ -42,7 +42,7 @@ const roomsSlice = createSlice({
     },
     setRoomAdvising: (state, action) => {
       const { id, kioskInfo } = action.payload;
-      const room = state.roomsData.find((room) => room.id === id);
+      const room = state.roomData.find((room) => room.id === id);
       if (room) {
         room.isAdvising = true;
         room.connectedKiosk = kioskInfo;
@@ -50,7 +50,7 @@ const roomsSlice = createSlice({
     },
     resetRoom: (state, action) => {
       const { id } = action.payload;
-      const room = state.roomsData.find((room) => room.id === id);
+      const room = state.roomData.find((room) => room.id === id);
       if (room) {
         room.isAdvising = false;
         room.connectedKiosk = null;
@@ -61,5 +61,5 @@ const roomsSlice = createSlice({
   },
 });
 
-export const { setRoomActive, setRoomAdvising, resetRoom } = roomsSlice.actions;
-export default roomsSlice.reducer;
+export const { setRoomActive, setRoomAdvising, resetRoom } = roomSlice.actions;
+export default roomSlice.reducer;
