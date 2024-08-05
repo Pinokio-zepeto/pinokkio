@@ -88,7 +88,6 @@ function Login() {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [usertype, setUserType] = useState('');
-  const [kioskInfo, setKioskInfo] = useState('');
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -110,7 +109,6 @@ function Login() {
 
     try {
       let res;
-      // usertype이 'kiosk'일 때만 kioskInfo를 가져옵니다.
       // 로그인 API 호출
       if (usertype === 'pos') {
         res = await postLoginPos(id, password);
@@ -119,26 +117,21 @@ function Login() {
         res = await postLoginAdvisor(id, password);
       } else if (usertype === 'kiosk') {
         res = await postLoginKiosk(id, password);
-        const kioskInfo = await getKioskInfo();
       }
 
       if (res && res.accessToken) {
         axios.defaults.headers.common['Authorization'] = `Bearer ${res.accessToken}`;
 
-        let kioskInfo = null;
-        if (usertype === 'kiosk') {
-          kioskInfo = await getKioskInfo();
-        }
-
         // 사용자 데이터 준비
         const newUserData = {
           user: { id: id },
           type: usertype,
-          typeInfo: usertype === 'kiosk' ? kioskInfo : null,
+          typeInfo: usertype === 'kiosk' ? await getKioskInfo() : null,
           token: res.accessToken,
         };
 
         console.log('userData before dispatch:', newUserData);
+        console.log(`newUserData : ${newUserData.typeInfo}`);
 
         if (newUserData) {
           console.log(`userData : ${newUserData.user.id}`);
@@ -183,7 +176,7 @@ function Login() {
         <StyledButton type="submit">로그인</StyledButton>
       </LoginForm>
       <ButtonWrapper>
-        <div onClick={findPassword}>비밀번호 찾기 </div>
+        <div onClick={findPassword}>비밀번호 찾기</div>
         <div>|</div>
         <div onClick={signUp}>회원가입</div>
       </ButtonWrapper>
