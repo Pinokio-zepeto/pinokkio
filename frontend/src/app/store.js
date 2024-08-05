@@ -10,21 +10,25 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import storage from 'redux-persist/lib/storage';
 
 import userReducer from '../features/user/userSlice';
+import advisorReducer from '../features/advisor/AdvisorSlice';
+import roomReducer from '../features/advisor/RoomSlice';
 
-const rootReducer = {
+const rootReducer = combineReducers({
   user: userReducer,
-};
+  advisor: advisorReducer,
+  room: roomReducer,
+});
 
 const persistConfig = {
-  key: 'user',
+  key: 'root',
   storage,
-  whitelist: ['user'], // only user will be persisted
+  whitelist: ['user'],
 };
 
-const persistedReducer = persistReducer(persistConfig, combineReducers(rootReducer));
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
@@ -34,6 +38,7 @@ const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
+  devTools: process.env.NODE_ENV !== 'production',
 });
 
 const persistor = persistStore(store);

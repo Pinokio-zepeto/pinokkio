@@ -66,15 +66,25 @@ const ToggleContainer = styled.div`
 `;
 
 function AdvIndex() {
-  const roomsData = useSelector((state) => state.rooms.roomsData);
+  const roomData = useSelector((state) => state.room.roomData);
   const userData = useSelector((state) => state.user.userData);
   const { isAvailable, currentConnections } = useSelector((state) => state.advisor);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    makeMeetingRoom(userData.typeInfo.tellerId);
+    createRooms();
   }, []);
 
+  const createRooms = async () => {
+    for (let i = 0; i < 3; i++) {
+      try {
+        const response = await makeMeetingRoom(userData.typeInfo.tellerId);
+        console.log(`Room ${i + 1} creation response:`, response);
+      } catch (error) {
+        console.error(`Error creating room ${i + 1}:`, error);
+      }
+    }
+  };
   const handleCustomerConnect = (customerId, roomId) => {
     console.log(customerId, roomId);
   };
@@ -99,7 +109,7 @@ function AdvIndex() {
         <LeftSection>
           <CustomerVideo />
           <CustomerWaiting
-            rooms={roomsData}
+            rooms={roomData}
             onConnect={handleCustomerConnect}
             onDisconnect={handleCustomerDisconnect}
           />
