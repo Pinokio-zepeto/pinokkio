@@ -63,10 +63,13 @@ export const postLoginAdvisor = async (username, password) => {
 
 export const postLoginPos = async (username, password) => {
   try {
+    console.log('Request payload:', { username, password });
     const response = await axios.post('/api/login/pos', {
       username: username,
       password: password,
     });
+    // 응답 데이터 로그로 확인
+    console.log('PostLoginPos response:', response.data);
     return response.data;
   } catch (error) {
     console.error('Pos login failed:', error);

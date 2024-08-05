@@ -1,4 +1,7 @@
 import Axios from 'axios'; // 인스턴스와 구분하기 위해 대문자 사용
+import { store } from '../app/store';
+import { setUser, clearUser } from '../features/user/userSlice';
+import { jwtDecode } from 'jwt-decode';
 
 /*
 변수 네이밍 규칙
@@ -15,8 +18,50 @@ const axios = Axios.create({
   baseURL: baseURL,
 });
 
-// accessToken, refreshToken을 사용하려면 withCredential = true 해주어야 한다.
-// 이렇게 하면 전역에서 withCredential = true가 된다.
+const isTokenExpired = (token) => {
+  if (!token) return true;
+  const { exp } = jwtDecode(token);
+  const currentTime = Date.now() / 1000;
+  return exp < currentTime;
+};
+
+axios.interceptors.request.use(
+  async (config) => {
+    const state = store.getState();
+    const user = state.user;
+    if (user) {
+      let accessToken = user.token;
+
+      if (accessToken && isTokenExpired(accessToken)) {
+        try {
+          const response = await axios.get(`${baseURL}/api/refresh`, {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          });
+          accessToken = response.data.accessToken;
+          store.dispatch(
+            setUser({
+              ...user,
+              token: accessToken,
+            })
+          );
+        } catch (error) {
+          store.dispatch(clearUser());
+          localStorage.removeItem('refreshToken');
+          // 필요에 따라 로그인 페이지로 리디렉션
+          // navigate('/login'); // If using react-router
+        }
+      }
+
+      if (accessToken) {
+        config.headers['Authorization'] = `Bearer ${accessToken}`;
+      }
+    }
+
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
 axios.defaults.withCredentials = true;
 
 export default axios;

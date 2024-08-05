@@ -39,6 +39,7 @@ const ProductManagementPage = () => {
         const data = await getItems(posId);
         setProducts(data.products || []); // Adjust based on actual API response
         setCategories(data.categories || []); // Adjust based on actual API response
+        console.log(data.map((name) => `${name.name}`));
       } catch (error) {
         setToastMessage('상품 및 카테고리 데이터를 가져오는 데 실패했습니다.');
       }
