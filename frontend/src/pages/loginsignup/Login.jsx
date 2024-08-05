@@ -5,8 +5,14 @@ import styled from 'styled-components';
 
 import LOGO from '../../components/common/Logo';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../../features/user/userSlice';
-import { postLoginKiosk, postLoginPos, postLoginAdvisor, getKioskInfo } from '../../apis/Auth';
+import { setUser, clearUser } from '../../features/user/userSlice';
+import {
+  postLoginKiosk,
+  postLoginPos,
+  postLoginAdvisor,
+  getKioskInfo,
+  getPosInfo,
+} from '../../apis/Auth';
 import axios from '../../apis/Axios';
 
 const LoginWrapper = styled.div`
@@ -109,6 +115,8 @@ function Login() {
 
     try {
       let res;
+
+      dispatch(clearUser());
       // 로그인 API 호출
       if (usertype === 'pos') {
         res = await postLoginPos(id, password);
@@ -126,7 +134,12 @@ function Login() {
         const newUserData = {
           user: { id: id },
           type: usertype,
-          typeInfo: usertype === 'kiosk' ? await getKioskInfo() : null,
+          typeInfo:
+            usertype === 'kiosk'
+              ? await getKioskInfo()
+              : usertype === 'pos'
+              ? await getPosInfo()
+              : null,
           token: res.accessToken,
         };
 
