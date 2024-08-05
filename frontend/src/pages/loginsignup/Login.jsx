@@ -112,7 +112,7 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    console.log('id : ', id);
     try {
       let res;
       // 로그인 API 호출
@@ -130,7 +130,7 @@ function Login() {
 
         // 사용자 데이터 준비
         const newUserData = {
-          user: { id: id },
+          user: id,
           type: usertype,
           typeInfo:
             usertype === 'kiosk'
