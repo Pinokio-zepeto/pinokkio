@@ -8,6 +8,7 @@ import ElderMenuCategory from '../../../components/kiosk/ElderMenuCategory';
 import MenuMain from '../../../components/kiosk/MenuMain';
 import Cart from '../../../components/kiosk/Cart';
 import MenuModal from '../../../components/kiosk/modal/MenuModal';
+import { requestMeeting } from '../../../apis/Room';
 
 const ElderMenuPageStyle = styled.div`
   display: flex;
@@ -100,8 +101,9 @@ function ElderMenuPage() {
 
   useEffect(() => {
     console.log('first rendering');
+    console.log(userData.typeInfo.kioskId);
     getCategory();
-
+    // requestMeeting(userData.typeInfo.kioskId); //OpenVidu 요청
     // 처음 렌더링 했을 때 순서 getCategory ->  useEffect(categories) -> useEffect(selectedCategory)
   }, []);
 
@@ -153,6 +155,7 @@ function ElderMenuPage() {
         </KioskLeftHeader>
         <KioskRightHeader>
           <ScreenStyle>Screen for advisor</ScreenStyle>
+          <p>{userData.typeInfo.KioskId}</p>
         </KioskRightHeader>
       </KioskHeader>
       <KioskBody>
