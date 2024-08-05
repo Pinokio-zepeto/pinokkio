@@ -72,17 +72,16 @@ function AdvIndex() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    createRooms();
+    console.log(userData);
+    createRoom();
   }, []);
 
-  const createRooms = async () => {
-    for (let i = 0; i < 3; i++) {
-      try {
-        const response = await makeMeetingRoom(userData.typeInfo.tellerId);
-        console.log(`Room ${i + 1} creation response:`, response);
-      } catch (error) {
-        console.error(`Error creating room ${i + 1}:`, error);
-      }
+  const createRoom = async () => {
+    try {
+      const response = await makeMeetingRoom(userData.user.id);
+      console.log(`Room creation response:`, response);
+    } catch (error) {
+      console.error(`Error creating room :`, error);
     }
   };
   const handleCustomerConnect = (customerId, roomId) => {
