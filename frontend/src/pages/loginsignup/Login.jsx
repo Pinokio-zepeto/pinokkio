@@ -110,10 +110,6 @@ function Login() {
 
     try {
       let res;
-      const kioskInfo = await getKioskInfo();
-
-      // usertype이 'kiosk'일 때만 kioskInfo를 가져옵니다.
-
       // 로그인 API 호출
       if (usertype === 'pos') {
         res = await postLoginPos(id, password);
@@ -123,9 +119,15 @@ function Login() {
       } else if (usertype === 'kiosk') {
         res = await postLoginKiosk(id, password);
       }
-      // 다른 usertype 처리 로직 추가
 
       if (res && res.accessToken) {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${res.accessToken}`;
+
+        let kioskInfo = null;
+        if (usertype === 'kiosk') {
+          kioskInfo = await getKioskInfo();
+        }
+
         // 사용자 데이터 준비
         const newUserData = {
           user: { id: id },
@@ -136,12 +138,10 @@ function Login() {
 
         console.log('userData before dispatch:', newUserData);
 
-        // 사용자 데이터가 제대로 설정되었는지 확인
         if (newUserData) {
           console.log(`userData : ${newUserData.user.id}`);
           dispatch(setUser(newUserData));
           console.log('Dispatch successful');
-          axios.defaults.headers.common['Authorization'] = `Bearer ${res.accessToken}`;
           navigate(`/${usertype}`);
         } else {
           console.error('사용자 데이터가 누락되었습니다.');
