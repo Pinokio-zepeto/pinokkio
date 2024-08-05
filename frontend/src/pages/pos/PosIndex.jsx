@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Navbar from '../../components/common/Navbar';
 import PosMainPage from './PosMainPage';
 import OrderListPage from './OrderListPage';
@@ -15,7 +15,6 @@ const Content = styled.div`
 `;
 
 function PosIndex() {
-  const location = useLocation();
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
   const navItems = [

@@ -14,6 +14,7 @@ import {
   getPosInfo,
 } from '../../apis/Auth';
 import axios from '../../apis/Axios';
+import Cookies from 'js-cookie';
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -131,6 +132,12 @@ function Login() {
 
       if (res && res.accessToken) {
         axios.defaults.headers.common['Authorization'] = `Bearer ${res.accessToken}`;
+
+        // accessToken을 localStorage에 저장
+        localStorage.setItem('accessToken', res.accessToken);
+
+        // refreshToken을 쿠키에 저장
+        Cookies.set('refreshToken', res.refreshToken);
 
         // 사용자 데이터 준비
         const newUserData = {
