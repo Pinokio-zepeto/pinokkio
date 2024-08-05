@@ -126,7 +126,7 @@ function CarouselPage() {
   };
 
   const takeAway = () => {
-    navigate('/kiosk/menu', { state: { where: 'take away' } });
+    navigate('/kiosk/elder-menu', { state: { where: 'take away' } });
   };
 
   // const slideAutoPlay = () => {

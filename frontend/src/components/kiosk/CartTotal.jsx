@@ -15,7 +15,7 @@ const CTtop = styled.div`
   padding-top: 1rem;
 `;
 const GoPaymentButton = styled.div`
-  background-color: #7392ff;
+  background-color: ${(props) => (props.isElder ? '#EC7348' : '#7392ff')};
   color: white;
   height: 3rem;
   text-align: center;
@@ -23,7 +23,7 @@ const GoPaymentButton = styled.div`
   font-size: 1.3rem;
 `;
 
-function CartTotal({ cartItems }) {
+function CartTotal({ cartItems, isElder }) {
   const navigate = useNavigate();
   const [totalPrice, setTotalPrice] = useState(0);
   useEffect(() => {
@@ -53,7 +53,9 @@ function CartTotal({ cartItems }) {
         <text>결제 금액</text>
         <text>{changePriceForm(totalPrice)}</text>
       </CTtop>
-      <GoPaymentButton onClick={goPayment}>결제하기</GoPaymentButton>
+      <GoPaymentButton onClick={goPayment} isElder={isElder}>
+        결제하기
+      </GoPaymentButton>
     </CT>
   );
 }

@@ -53,7 +53,7 @@ function KioskIndex() {
             <Route path="menu" element={<MenuPage />} />
             <Route path="payment" element={<PaymentPage />} />
             <Route path="receipt" element={<ReceiptPage />} />
-            <Route path="elde-rmenu" element={<ElderMenuPage />} />
+            <Route path="elder-menu" element={<ElderMenuPage />} />
             <Route path="elder-payment" element={<ElderPaymentPage />} />
             <Route path="elder-receipt" element={<ElderReceiptPage />} />
             <Route path="loading" element={<LoadingPage />} />

@@ -15,7 +15,6 @@ const MenuPageStyle = styled.div`
   align-items: center;
   background-color: #efefef;
   min-width: 27rem;
-  /* align-items: center; */
 `;
 
 const KioskHeader = styled.div`
@@ -131,7 +130,7 @@ function MenuPage() {
           />
         )}
       </KioskBody>
-      <Cart cartItems={cartItems} setCartItems={setCartItems} />
+      <Cart cartItems={cartItems} setCartItems={setCartItems} isElder={false} />
 
       {modal && (
         <MenuModal
