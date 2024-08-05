@@ -198,8 +198,10 @@ function MenuModal({ item, cartItems, setCartItems, setModal, isElder }) {
           </ModalBody>
         </ImageAndContents>
         <ModalFooter>
-          <CancelButton onClick={() => setModal(false)}>취소</CancelButton>
-          <PutButton onClick={addCart} disabled={!(count > 0)}>
+          <CancelButton onClick={() => setModal(false)} isElder={isElder}>
+            취소
+          </CancelButton>
+          <PutButton onClick={addCart} disabled={!(count > 0)} isElder={isElder}>
             담기
           </PutButton>
         </ModalFooter>

@@ -187,6 +187,7 @@ function ElderMenuPage() {
           cartItems={cartItems}
           setCartItems={setCartItems}
           setModal={setModal}
+          isElder={true}
         ></MenuModal>
       )}
     </ElderMenuPageStyle>
