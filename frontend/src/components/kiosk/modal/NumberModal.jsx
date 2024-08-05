@@ -2,68 +2,77 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const ModalBg = styled.div`
-  background: rgba(0, 0, 0, 0.5);
+  /* display: none; */
+  background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  top: 1rem;
+  width: 27rem;
+  height: 47rem;
 `;
 
 const Modal = styled.div`
   background: white;
-  width: 80%;
-  max-width: 400px;
-  padding: 30px;
-  border-radius: 20px;
+  border-radius: 0.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  height: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'CafeOhsquareAir';
 `;
 
-const Title = styled.h2`
-  margin-bottom: 20px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
+const Title = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-top: 10%;
 `;
 
 const InputDisplay = styled.div`
-  width: 100%;
-  padding: 10px 0;
-  font-size: 36px;
+  width: 60%;
   text-align: center;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #ddd;
+  height: 2rem;
+  border-bottom: 2px solid #d9d9d9;
+  margin-top: 5%;
+  line-height: 2rem;
+  font-size: 1.6rem;
 `;
 
 const NumberPad = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
   width: 100%;
+  display: grid;
+  justify-content: center;
+
+  grid-template-columns: repeat(3, 0fr);
+  gap: 0.5rem;
+  margin-top: 5%;
 `;
 
 const Button = styled.button`
-  width: 60px;
-  height: 60px;
-  font-size: 22px;
+  width: 4.5rem;
+  height: 4.5rem;
+  font-size: 1.8rem;
   border: none;
-  background-color: #f7f7f7;
+  background-color: #d9d9d9;
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-
-  &:hover {
-    background-color: #e0e0e0;
-  }
+  box-shadow: 2px 3px 0px rgba(0, 0, 0, 0.3);
+  color: #414141;
 
   &:last-child {
-    background-color: #4a90e2;
+    background-color: #7392ff;
+    color: white;
+  }
+
+  &:nth-child(10) {
+    font-size: 1.2rem;
+    background-color: #ec7348;
     color: white;
   }
 `;
