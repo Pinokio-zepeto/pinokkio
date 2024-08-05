@@ -6,7 +6,13 @@ import styled from 'styled-components';
 import LOGO from '../../components/common/Logo';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../features/user/userSlice';
-import { postLoginKiosk, postLoginPos, postLoginAdvisor, getKioskInfo } from '../../apis/Auth';
+import {
+  postLoginKiosk,
+  postLoginPos,
+  postLoginAdvisor,
+  getKioskInfo,
+  getPosInfo,
+} from '../../apis/Auth';
 import axios from '../../apis/Axios';
 
 const LoginWrapper = styled.div`
@@ -119,9 +125,11 @@ function Login() {
       const res = await postLoginPos(id, password);
       const { accessToken } = res;
       axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-      navigate('/pos');
-      const userData = { name: id, type: 'pos' };
+
+      const posInfo = await getPosInfo();
+      const userData = { name: id, type: 'pos', typeInfo: posInfo };
       dispatch(setUser(userData));
+      navigate('/pos');
     } else if (usertype === 'kiosk') {
       const res = await postLoginKiosk(id, password);
       // accessToken을 axios instance의 header에 넣는다.

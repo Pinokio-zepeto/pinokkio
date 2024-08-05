@@ -84,7 +84,7 @@ function CarouselPage() {
   const navigate = useNavigate();
   const slideRef = useRef(0);
 
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState(false);
   const [carouselIndex, setCarouselIndex] = useState(0);
 
   const [carouselimages, setCarouselimages] = useState([
