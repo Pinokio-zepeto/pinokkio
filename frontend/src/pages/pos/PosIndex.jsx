@@ -11,6 +11,7 @@ import '../../styles/pos/pos.css';
 
 const Content = styled.div`
   transition: margin-left 0.3s ease-in-out;
+  margin-left: ${({ $isNavbarOpen }) => ($isNavbarOpen ? '250px' : '0')};
 `;
 
 function PosIndex() {
@@ -33,7 +34,7 @@ function PosIndex() {
     <div className="Pos">
       <Navbar items={navItems} isOpen={isNavbarOpen} toggleNavbar={toggleNavbar} />
       <div style={{ marginTop: 60 }}>
-        <Content isNavbarOpen={isNavbarOpen}>
+        <Content $isNavbarOpen={isNavbarOpen}>
           <Routes>
             <Route path="/" element={<PosMainPage />} />
             <Route path="order-list" element={<OrderListPage />} />

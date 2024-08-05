@@ -4,7 +4,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import LOGO from '../../components/common/Logo';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setUser } from '../../features/user/userSlice';
 import { postLoginKiosk, postLoginPos, postLoginAdvisor, getKioskInfo } from '../../apis/Auth';
 import axios from '../../apis/Axios';
@@ -88,10 +88,10 @@ function Login() {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [usertype, setUserType] = useState('');
+  const [userData, setUserData] = useState({});
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.user);
 
   const findPassword = () => {
     navigate('/findpassword1');
@@ -106,40 +106,54 @@ function Login() {
   };
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // 기본 폼 제출 방지
+    e.preventDefault();
 
-    if (usertype === 'advisor') {
-      const res = await postLoginAdvisor(id, password);
-      const { accessToken } = res;
-      axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-      navigate('/advisor');
-      const userData = { name: id, type: 'advisor' };
-      dispatch(setUser(userData));
-    } else if (usertype === 'pos') {
-      const res = await postLoginPos(id, password);
-      const { accessToken } = res;
-      axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-      navigate('/pos');
-      const userData = { name: id, type: 'pos' };
-      dispatch(setUser(userData));
-    } else if (usertype === 'kiosk') {
-      const res = await postLoginKiosk(id, password);
-      // accessToken을 axios instance의 header에 넣는다.
-      const { accessToken, refreshToken } = res;
-      axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-      localStorage.setItem('refreshToken', refreshToken);
-      // kiosk가 어느 pos의 것인지를 알아야 메뉴 추천 및 부가 기능을 구현하기 때문에 posId를 가져온다.
-      const kioskInfo = await getKioskInfo();
-      console.log('kioskinfo');
-      console.log(kioskInfo);
-      const userData = { user: id, type: 'kiosk', typeInfo: kioskInfo };
-      console.log(userData);
-      dispatch(setUser(userData));
-      navigate('/kiosk');
+    try {
+      let res;
+      let kioskInfo = null;
 
-      // console.log(res);
-    } else {
-      console.log('user type을 선택하지 않았습니다.');
+      // usertype이 'kiosk'일 때만 kioskInfo를 가져옵니다.
+      if (usertype === 'kiosk') {
+        kioskInfo = await getKioskInfo();
+      }
+
+      // 로그인 API 호출
+      if (usertype === 'pos') {
+        res = await postLoginPos(id, password);
+        console.log('POS login response:', res);
+      } else if (usertype === 'advisor') {
+        res = await postLoginAdvisor(id, password);
+      } else if (usertype === 'kiosk') {
+        res = await postLoginKiosk(id, password);
+      }
+      // 다른 usertype 처리 로직 추가
+
+      if (res && res.accessToken) {
+        // 사용자 데이터 준비
+        const newUserData = {
+          user: { id: id },
+          type: usertype,
+          typeInfo: usertype === 'kiosk' ? kioskInfo : null,
+          token: res.accessToken,
+        };
+
+        console.log('userData before dispatch:', newUserData);
+
+        // 사용자 데이터가 제대로 설정되었는지 확인
+        if (newUserData) {
+          console.log(`userData : ${newUserData.user.id}`);
+          dispatch(setUser(newUserData));
+          console.log('Dispatch successful');
+          axios.defaults.headers.common['Authorization'] = `Bearer ${res.accessToken}`;
+          navigate(`/${usertype}`);
+        } else {
+          console.error('사용자 데이터가 누락되었습니다.');
+        }
+      } else {
+        console.error('토큰이 응답에 누락되었습니다.');
+      }
+    } catch (error) {
+      console.error('로그인 실패:', error);
     }
   };
 
@@ -155,12 +169,12 @@ function Login() {
         />
         <Input
           type="password"
-          className="Password"
+          className="password"
           placeholder="패스워드"
           onChange={(e) => setPassword(e.target.value)}
         />
         <select value={usertype} onChange={handleUserType}>
-          <option value="" selected disabled>
+          <option value="" disabled>
             선택하세요
           </option>
           <option value="kiosk">키오스크</option>

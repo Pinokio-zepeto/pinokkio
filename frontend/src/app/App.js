@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route, BrowserRouter as Router, Navigate, Outlet } from 'react-router-dom';
 
 import MainPage from '../pages/MainPage';
@@ -23,10 +23,6 @@ const ProtectedRoute = ({ type }) => {
 };
 
 function App() {
-  const user = useSelector((state) => state.user.user);
-
-  useEffect(() => {});
-
   return (
     <>
       <Router>
