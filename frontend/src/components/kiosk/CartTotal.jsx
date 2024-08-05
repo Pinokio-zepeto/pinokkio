@@ -21,6 +21,8 @@ const GoPaymentButton = styled.div`
   text-align: center;
   line-height: 3rem;
   font-size: 1.3rem;
+  pointer-events: ${(props) => (props.disabled ? 'none' : null)};
+  opacity: ${(props) => (props.disabled ? '0.5' : null)};
 `;
 
 function CartTotal({ cartItems, isElder }) {
@@ -53,7 +55,7 @@ function CartTotal({ cartItems, isElder }) {
         <text>결제 금액</text>
         <text>{changePriceForm(totalPrice)}</text>
       </CTtop>
-      <GoPaymentButton onClick={goPayment} isElder={isElder}>
+      <GoPaymentButton onClick={goPayment} isElder={isElder} disabled={cartItems.length === 0}>
         결제하기
       </GoPaymentButton>
     </CT>

@@ -123,8 +123,10 @@ function Login() {
         console.log('POS login response:', res);
       } else if (usertype === 'advisor') {
         res = await postLoginAdvisor(id, password);
+        console.log('advisor login response:', res);
       } else if (usertype === 'kiosk') {
         res = await postLoginKiosk(id, password);
+        console.log('kiosk login response:', res);
       }
 
       if (res && res.accessToken) {

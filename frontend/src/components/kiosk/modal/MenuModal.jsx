@@ -23,55 +23,128 @@ const Modal = styled.div`
   display: flex;
   flex-direction: column;
   /* align-items: center; */
-  /* justify-content: center; */
+  justify-content: space-between;
   overflow: hidden;
   font-family: 'CafeOhsquareAir';
 `;
 
+const ImageAndContents = styled.div`
+  width: 100%;
+  height: 80%;
+`;
+
 const ImageContainer = styled.div`
   width: 100%;
-  height: 60%;
+  height: 75%;
 `;
 const ModalImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
 `;
-const MenuTitleKo = styled.div``;
 
-const MenuTitleEn = styled.div``;
+const ModalBody = styled.div`
+  padding: 0 1rem;
+  padding-top: 0.7rem;
+`;
+
+const MenuTitleKo = styled.div`
+  font-size: 1.3rem;
+`;
+
+const MenuDetail = styled.div``;
 
 const PriceAndButtons = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0.5rem;
 `;
 
 const MenuPrice = styled.div``;
 
 const UpDownButtons = styled.div`
+  --height: 1rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: calc(var(--height) * 3);
+  height: var(--height);
+  border: calc(var(--height) / 60) solid #d9d9d9;
+  border-radius: 0.1rem;
 `;
 
-const DownButton = styled.div``;
+const DownButton = styled.div`
+  --height: 1rem;
+  width: var(--height);
+  height: var(--height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${(props) => (props.isElder ? '#EC7348' : '#7392ff')};
+`;
 
-const MenuCount = styled.div``;
+const MenuCount = styled.div`
+  --height: 1rem;
+  width: var(--height);
+  height: var(--height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
-const UpButton = styled.div``;
+const UpButton = styled.div`
+  --height: 1rem;
+  width: var(--height);
+  height: var(--height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${(props) => (props.isElder ? '#EC7348' : '#7392ff')};
+`;
 
 const ModalFooter = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  margin-bottom: 0.8rem;
 `;
 
-const CancelButton = styled.div``;
+const CancelButton = styled.div`
+  --height: 0.7rem;
+  border: 0.05rem solid;
+  border-color: ${(props) => (props.isElder ? '#EC7348' : '#7392ff')};
+  border-radius: var(--height);
+  width: 40%;
+  color: ${(props) => (props.isElder ? '#EC7348' : '#7392ff')};
+  height: calc(var(--height) * 2);
+  line-height: calc(var(--height) * 2);
+  text-align: center;
+  margin-right: 0.7rem;
+  font-family: 'CafeOhsquareAir';
+  box-shadow: 0.05rem 0.1rem 0rem rgb(0 0 0 / 25%);
+`;
 
-const PutButton = styled.div``;
+const PutButton = styled.div`
+  --height: 0.7rem;
+  border: 0.05rem solid;
+  border-color: ${(props) => (props.isElder ? '#EC7348' : '#7392ff')};
+  background-color: ${(props) => (props.isElder ? '#EC7348' : '#7392ff')};
+  border-radius: var(--height);
+  color: white;
+  width: 40%;
+  height: calc(var(--height) * 2);
+  line-height: calc(var(--height) * 2);
+  text-align: center;
+  font-family: 'CafeOhsquareAir';
+  box-shadow: 0.05rem 0.1rem 0rem rgb(0 0 0 / 25%);
+  pointer-events: ${(props) => (props.disabled ? 'none' : null)};
+  opacity: ${(props) => (props.disabled ? '0.5' : null)};
+`;
 
-function MenuModal({ item, cartItems, setCartItems, setModal }) {
+function MenuModal({ item, cartItems, setCartItems, setModal, isElder }) {
   // modal 창에서 선택한 수량
   const [count, setCount] = useState(1);
 
@@ -100,24 +173,35 @@ function MenuModal({ item, cartItems, setCartItems, setModal }) {
   return (
     <ModalBg>
       <Modal>
-        <ImageContainer>
-          <ModalImage src={coffeeimage} />
-        </ImageContainer>
-        <MenuTitleKo>{item.name}</MenuTitleKo>
-        <MenuTitleEn></MenuTitleEn>
-        <PriceAndButtons>
-          <MenuPrice>{item.price}</MenuPrice>
-          <UpDownButtons>
-            <UpButton onClick={() => setCount(count + 1)}>+</UpButton>
-            <MenuCount>{count}</MenuCount>
-            <DownButton onClick={() => (count > 0 ? setCount(count - 1) : null)}>-</DownButton>
-          </UpDownButtons>
-        </PriceAndButtons>
+        <ImageAndContents>
+          <ImageContainer>
+            <ModalImage src={coffeeimage} />
+          </ImageContainer>
+          <ModalBody>
+            <MenuTitleKo>{item.name}</MenuTitleKo>
+            <MenuDetail>{item.detail}</MenuDetail>
+            <PriceAndButtons>
+              <MenuPrice>{item.price}</MenuPrice>
+              <UpDownButtons>
+                <DownButton
+                  onClick={() => (count > 0 ? setCount(count - 1) : null)}
+                  isElder={isElder}
+                >
+                  -
+                </DownButton>
+                <MenuCount>{count}</MenuCount>
+                <UpButton onClick={() => setCount(count + 1)} isElder={isElder}>
+                  +
+                </UpButton>
+              </UpDownButtons>
+            </PriceAndButtons>
+          </ModalBody>
+        </ImageAndContents>
         <ModalFooter>
+          <CancelButton onClick={() => setModal(false)}>취소</CancelButton>
           <PutButton onClick={addCart} disabled={!(count > 0)}>
             담기
           </PutButton>
-          <CancelButton onClick={() => setModal(false)}>취소</CancelButton>
         </ModalFooter>
       </Modal>
     </ModalBg>

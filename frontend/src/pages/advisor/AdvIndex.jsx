@@ -67,7 +67,7 @@ const ToggleContainer = styled.div`
 
 function AdvIndex() {
   const roomData = useSelector((state) => state.room.roomData);
-  const userData = useSelector((state) => state.user.userData);
+  const userData = useSelector((state) => state.user);
   const { isAvailable, currentConnections } = useSelector((state) => state.advisor);
   const dispatch = useDispatch();
 

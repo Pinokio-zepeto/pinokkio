@@ -138,6 +138,7 @@ function MenuPage() {
           cartItems={cartItems}
           setCartItems={setCartItems}
           setModal={setModal}
+          isElder={false}
         ></MenuModal>
       )}
     </MenuPageStyle>
