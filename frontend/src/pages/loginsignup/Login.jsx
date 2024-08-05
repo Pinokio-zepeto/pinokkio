@@ -88,7 +88,7 @@ function Login() {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [usertype, setUserType] = useState('');
-  const [userData, setUserData] = useState({});
+  const [kioskInfo, setKioskInfo] = useState('');
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -110,12 +110,9 @@ function Login() {
 
     try {
       let res;
-      let kioskInfo = null;
+      const kioskInfo = await getKioskInfo();
 
       // usertype이 'kiosk'일 때만 kioskInfo를 가져옵니다.
-      if (usertype === 'kiosk') {
-        kioskInfo = await getKioskInfo();
-      }
 
       // 로그인 API 호출
       if (usertype === 'pos') {
