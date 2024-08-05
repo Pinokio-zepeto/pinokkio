@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/advisor/Navbar';
 import CustomerKiosk from '../../components/advisor/CustomerKiosk';
 import CustomerVideo from '../../components/advisor/CustomerVideo';
 import CustomerWaiting from '../../components/advisor/CustomerWaiting';
 import ToggleSwitch from '../../components/advisor/ToggleSwitch';
 import styled from 'styled-components';
+import { makeMeetingRoom } from '../../apis/Room';
+import { useDispatch, useSelector } from 'react-redux';
+import { setRoomActive, setRoomAdvising, resetRoom } from '../../features/advisor/RoomSlice';
+import {
+  setAvailability,
+  addConnection,
+  removeConnection,
+} from '../../features/advisor/AdvisorSlice';
 
 // 스타일 컴포넌트 정의
 const AdvIndexWrapper = styled.div`
@@ -58,40 +66,21 @@ const ToggleContainer = styled.div`
 `;
 
 function AdvIndex() {
-  // 방 상태와 상담원 상태를 관리하는 useState 훅
-  const [rooms, setRooms] = useState([
-    { id: 1, status: 'waiting' },
-    { id: 2, status: 'waiting' },
-    { id: 3, status: 'waiting' },
-  ]);
-  const [isAvailable, setIsAvailable] = useState(true);
+  const roomsData = useSelector((state) => state.rooms.roomsData);
+  const userData = useSelector((state) => state.user.userData);
+  const { isAvailable, currentConnections } = useSelector((state) => state.advisor);
+  const dispatch = useDispatch();
 
-  // 고객 요청을 처리하는 함수
-  const handleCustomerRequest = () => {
-    setRooms((prevRooms) => {
-      const updatedRooms = [...prevRooms];
-      const emptyRoomIndex = updatedRooms.findIndex((room) => room.status === 'waiting');
-      if (emptyRoomIndex !== -1) {
-        updatedRooms[emptyRoomIndex].status = 'requested';
-      }
-      return updatedRooms;
-    });
+  useEffect(() => {
+    makeMeetingRoom(userData.typeInfo.tellerId);
+  }, []);
+
+  const handleCustomerConnect = (customerId, roomId) => {
+    console.log(customerId, roomId);
   };
 
-  // 고객이 연결되었을 때 상태를 업데이트하는 함수
-  const handleCustomerConnected = (roomId) => {
-    setRooms((prevRooms) => {
-      return prevRooms.map((room) =>
-        room.id === roomId ? { ...room, status: 'connected' } : room
-      );
-    });
-  };
-
-  // 고객 연결이 끊어졌을 때 상태를 업데이트하는 함수
-  const handleCustomerDisconnected = (roomId) => {
-    setRooms((prevRooms) => {
-      return prevRooms.map((room) => (room.id === roomId ? { ...room, status: 'waiting' } : room));
-    });
+  const handleCustomerDisconnect = (customerId, roomId) => {
+    console.log(customerId, roomId);
   };
 
   return (
@@ -99,14 +88,21 @@ function AdvIndex() {
       <NavComponents>
         <Navbar />
         <ToggleContainer>
-          <ToggleSwitch isAvailable={isAvailable} setIsAvailable={setIsAvailable} />
-          <p>연결 거절모드 토글</p>
+          <ToggleSwitch
+            isAvailable={isAvailable}
+            setIsAvailable={(value) => dispatch(setAvailability(value))}
+          />
+          <p>연결 거절모드 토글 (현재 연결: {currentConnections}/3)</p>
         </ToggleContainer>
       </NavComponents>
       <MainContent>
         <LeftSection>
           <CustomerVideo />
-          <CustomerWaiting rooms={rooms} setRooms={setRooms} />
+          <CustomerWaiting
+            rooms={roomsData}
+            onConnect={handleCustomerConnect}
+            onDisconnect={handleCustomerDisconnect}
+          />
         </LeftSection>
         <RightSection>
           <CustomerKiosk />
