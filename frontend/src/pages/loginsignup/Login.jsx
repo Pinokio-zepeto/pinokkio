@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import LOGO from '../../components/common/Logo';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../../features/user/userSlice';
+import { setUser, clearUser } from '../../features/user/userSlice';
 import {
   postLoginKiosk,
   postLoginPos,
@@ -115,14 +115,18 @@ function Login() {
     console.log('id : ', id);
     try {
       let res;
+
+      dispatch(clearUser());
       // 로그인 API 호출
       if (usertype === 'pos') {
         res = await postLoginPos(id, password);
         console.log('POS login response:', res);
       } else if (usertype === 'advisor') {
         res = await postLoginAdvisor(id, password);
+        console.log('advisor login response:', res);
       } else if (usertype === 'kiosk') {
         res = await postLoginKiosk(id, password);
+        console.log('kiosk login response:', res);
       }
 
       if (res && res.accessToken) {

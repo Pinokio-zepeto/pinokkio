@@ -90,22 +90,22 @@ export const postLoginKiosk = async (username, password) => {
   }
 };
 
-export const getPosInfo = async () => {
-  try {
-    const response = await axios.get('/api/pos/my-info');
-    return response.data;
-  } catch (error) {
-    console.error('get Pos info failed:', error);
-    throw error;
-  }
-};
-
 export const getKioskInfo = async () => {
   try {
     const response = await axios.get('/api/kiosk/my-info');
     return response.data;
   } catch (error) {
     console.error('get Kiosk info failed:', error);
+    throw error;
+  }
+};
+
+export const getPosInfo = async () => {
+  try {
+    const response = await axios.get('/api/pos/my-info');
+    return response.data;
+  } catch (error) {
+    console.error('get pos info failed:', error);
     throw error;
   }
 };
