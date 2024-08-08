@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3a32849-06bd-48b8-88aa-a8d1a8904044" name="Changes" comment="[fix] Customer 클래스 테이블명 변경 &#10;order -&gt; customer" />
+    <list default="true" id="f3a32849-06bd-48b8-88aa-a8d1a8904044" name="Changes" comment="[fix] Customer 클래스 테이블명 변경 &#10;order -&gt; customer">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pinokkio/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pinokkio/src/main/resources/application.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
