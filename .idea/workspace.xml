@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3a32849-06bd-48b8-88aa-a8d1a8904044" name="Changes" comment="[fix] Customer 클래스 테이블명 변경 &#10;order -&gt; customer">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/S11P12A601.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="f3a32849-06bd-48b8-88aa-a8d1a8904044" name="Changes" comment="[feat] 특정 기간 내 주문내역 상세 조회 기능 추가">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,68 +29,113 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
-  <component name="GitLabMergeRequestFiltersHistory"><![CDATA[{
-  "history": [
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;yeondori&quot;
+  }
+}</component>
+  <component name="GitLabMergeRequestFiltersHistory">{
+  &quot;history&quot;: [
     {
-      "state": "OPENED"
+      &quot;state&quot;: &quot;OPENED&quot;
     }
   ],
-  "lastFilter": {
-    "state": "OPENED"
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPENED&quot;
   }
-}]]></component>
-  <component name="GitLabMergeRequestsSettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "first": "https://lab.ssafy.com/s11-webmobile1-sub2/S11P12A601.git",
-    "second": "62408018-3404-4184-85fb-18ace9b7c87f"
+}</component>
+  <component name="GitLabMergeRequestsSettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;first&quot;: &quot;https://lab.ssafy.com/s11-webmobile1-sub2/S11P12A601.git&quot;,
+    &quot;second&quot;: &quot;62408018-3404-4184-85fb-18ace9b7c87f&quot;
   }
-}]]></component>
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/whereisawedhii/face_analysis_kiosk.git&quot;,
+    &quot;accountId&quot;: &quot;2448aa0f-c6d3-4fbe-851d-a464028942d2&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="2jM4slggbHu8LvY4nTz1v2fBBP7" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Gradle.Build pinokkio.executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.PinokkioApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;backend&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/SSAFY/Desktop/S11P12A601&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Gradle.Build pinokkio.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenDatabaseViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.PinokkioApplication.executor": "Run",
+    "git-widget-placeholder": "feature/openVidu",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/SSAFY/Desktop/S11P12A601",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Facets",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.general",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.pinokkio.api.order.dto.request" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="PinokkioApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <envs>
         <env name="BUCKET" value="pinokkio" />
+        <env name="EMAIL" value="88qazs2@naver.com" />
+        <env name="EMAIL_PW" value="EQKJYFBL6F6D" />
+        <env name="ENCRYPTION_KEY" value="XtRn3ABD4IwdM1EhiLsyJZaHwn04a9tEu3gbnQ9fP8E=" />
+        <env name="JWT_SECRET" value="pinokkiopinokkiopinokkiopinokkiopinokkiopinokkio" />
+        <env name="LIVEKIT_API_KEY" value="devkey" />
+        <env name="LIVEKIT_API_SECRET" value="pinokkiopinokkiopinokkiopinokkiopinokkiopinokkio" />
         <env name="REGION" value="ap-northeast-2" />
         <env name="S3_ACCESS_KEY" value="AKIA4MTWNYAX53KMP3WZ" />
         <env name="S3_SECRET_KEY" value="g/RC/53/3SmpS60XqEHk7I7cbeJEcbYMtpeK74dK" />
       </envs>
       <module name="pinokkio.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.pinokkio.PinokkioApplication" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -122,6 +159,7 @@
       <updated>1721183820557</updated>
       <workItem from="1721183821570" duration="4271000" />
       <workItem from="1721190119894" duration="2259000" />
+      <workItem from="1723019000725" duration="6531000" />
     </task>
     <task id="LOCAL-00001" summary="[fix] Customer 클래스 테이블명 변경 &#10;order -&gt; customer">
       <option name="closed" value="true" />
@@ -131,7 +169,23 @@
       <option name="project" value="LOCAL" />
       <updated>1721191775420</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="[feat] 주문내역 상세 DTO 생성">
+      <option name="closed" value="true" />
+      <created>1723078448638</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1723078448638</updated>
+    </task>
+    <task id="LOCAL-00003" summary="[feat] 특정 기간 내 주문내역 상세 조회 기능 추가">
+      <option name="closed" value="true" />
+      <created>1723078485895</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1723078485895</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,7 +204,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="[fix] Customer 클래스 테이블명 변경 &#10;order -&gt; customer" />
-    <option name="LAST_COMMIT_MESSAGE" value="[fix] Customer 클래스 테이블명 변경 &#10;order -&gt; customer" />
+    <MESSAGE value="[feat] 주문내역 상세 DTO 생성" />
+    <MESSAGE value="[feat] 특정 기간 내 주문내역 상세 조회 기능 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="[feat] 특정 기간 내 주문내역 상세 조회 기능 추가" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
