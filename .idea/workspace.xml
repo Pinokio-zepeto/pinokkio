@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3a32849-06bd-48b8-88aa-a8d1a8904044" name="Changes" comment="[feat] 특정 기간 내 주문내역 상세 조회 기능 추가">
+    <list default="true" id="f3a32849-06bd-48b8-88aa-a8d1a8904044" name="Changes" comment="[fix] 주문 상태 전환 로직 수정&#10;KIOSK -&gt; ORDER">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pinokkio/src/main/java/com/example/pinokkio/api/order/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pinokkio/src/main/java/com/example/pinokkio/api/order/OrderRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +33,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -89,8 +91,9 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenDatabaseViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.PinokkioApplication.executor": "Run",
-    "git-widget-placeholder": "feature/openVidu",
+    "git-widget-placeholder": "feature/sales-statistics",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/SSAFY/Desktop/S11P12A601",
     "node.js.detected.package.eslint": "true",
@@ -105,8 +108,13 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.pinokkio.api.order.statistics.dto.response" />
+      <recent name="com.example.pinokkio.api.customer.dto.response" />
       <recent name="com.example.pinokkio.api.order.dto.request" />
     </key>
   </component>
@@ -159,7 +167,8 @@
       <updated>1721183820557</updated>
       <workItem from="1721183821570" duration="4271000" />
       <workItem from="1721190119894" duration="2259000" />
-      <workItem from="1723019000725" duration="6531000" />
+      <workItem from="1723019000725" duration="28074000" />
+      <workItem from="1723159692025" duration="21462000" />
     </task>
     <task id="LOCAL-00001" summary="[fix] Customer 클래스 테이블명 변경 &#10;order -&gt; customer">
       <option name="closed" value="true" />
@@ -185,7 +194,279 @@
       <option name="project" value="LOCAL" />
       <updated>1723078485895</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="[feat] 특정 기간 내 주문내역 상세 조회 기능 추가">
+      <option name="closed" value="true" />
+      <created>1723080383319</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1723080383319</updated>
+    </task>
+    <task id="LOCAL-00005" summary="[feat] 카테고리 삭제 예외 추가">
+      <option name="closed" value="true" />
+      <created>1723082004332</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1723082004332</updated>
+    </task>
+    <task id="LOCAL-00006" summary="[refactor] String -&gt; UUID">
+      <option name="closed" value="true" />
+      <created>1723082020143</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1723082020143</updated>
+    </task>
+    <task id="LOCAL-00007" summary="[refactor] String -&gt; UUID">
+      <option name="closed" value="true" />
+      <created>1723082322401</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1723082322401</updated>
+    </task>
+    <task id="LOCAL-00008" summary="[feat] 주문 내역 더미데이터 추가, 비밀번호 변경">
+      <option name="closed" value="true" />
+      <created>1723095653903</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1723095653903</updated>
+    </task>
+    <task id="LOCAL-00009" summary="[fix] 파라미터 위치 변경">
+      <option name="closed" value="true" />
+      <created>1723095663879</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1723095663879</updated>
+    </task>
+    <task id="LOCAL-00010" summary="[refactor] 키워드 접두사 검색 -&gt; 키워드 포함 검색">
+      <option name="closed" value="true" />
+      <created>1723095694086</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1723095694086</updated>
+    </task>
+    <task id="LOCAL-00011" summary="[feat] @Transactional">
+      <option name="closed" value="true" />
+      <created>1723095712690</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1723095712690</updated>
+    </task>
+    <task id="LOCAL-00012" summary="[fix] 키오스크 메일 생성 시 영문 도메인으로 변경">
+      <option name="closed" value="true" />
+      <created>1723096605191</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1723096605191</updated>
+    </task>
+    <task id="LOCAL-00013" summary="[fix] 키오스크 등록 API 이동">
+      <option name="closed" value="true" />
+      <created>1723097725742</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1723097725742</updated>
+    </task>
+    <task id="LOCAL-00014" summary="[fix] 키오스크 등록 API 추가">
+      <option name="closed" value="true" />
+      <created>1723097752857</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1723097752857</updated>
+    </task>
+    <task id="LOCAL-00015" summary="[chore] ddl-auto 설정&#10;create -&gt; update">
+      <option name="closed" value="true" />
+      <created>1723098251473</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1723098251473</updated>
+    </task>
+    <task id="LOCAL-00016" summary="[feat] Pos -&gt; Kiosk 삭제 API 추가">
+      <option name="closed" value="true" />
+      <created>1723098280171</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1723098280171</updated>
+    </task>
+    <task id="LOCAL-00017" summary="[fix] addSession 로직 수정&#10;현 토큰에서 ID를 추출해 key값으로 넣도록">
+      <option name="closed" value="true" />
+      <created>1723099406945</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1723099406945</updated>
+    </task>
+    <task id="LOCAL-00018" summary="[feat] ws Permit">
+      <option name="closed" value="true" />
+      <created>1723100019292</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1723100019292</updated>
+    </task>
+    <task id="LOCAL-00019" summary="[fix] Socket에서 토큰 받는 로직 수정">
+      <option name="closed" value="true" />
+      <created>1723102102981</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1723102102981</updated>
+    </task>
+    <task id="LOCAL-00020" summary="[fix] 특정 기간 내 주문시 동일 posId의 주문건만 조회되도록 수정">
+      <option name="closed" value="true" />
+      <created>1723106903038</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1723106903038</updated>
+    </task>
+    <task id="LOCAL-00021" summary="[refactor] reformat">
+      <option name="closed" value="true" />
+      <created>1723106916818</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1723106916818</updated>
+    </task>
+    <task id="LOCAL-00022" summary="[fix] UUID 타입 Validation 어노테이션 변경&#10;NotEmpty -&gt; NotNull">
+      <option name="closed" value="true" />
+      <created>1723107623486</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1723107623486</updated>
+    </task>
+    <task id="LOCAL-00023" summary="[refactor] reformat">
+      <option name="closed" value="true" />
+      <created>1723176112082</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1723176112082</updated>
+    </task>
+    <task id="LOCAL-00024" summary="[refactor] 불필요한 setter 삭제&#10;setGender">
+      <option name="closed" value="true" />
+      <created>1723176129003</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1723176129003</updated>
+    </task>
+    <task id="LOCAL-00025" summary="[feat] 전화번호 기반 고객 조회 예외 추가">
+      <option name="closed" value="true" />
+      <created>1723176152026</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1723176152026</updated>
+    </task>
+    <task id="LOCAL-00026" summary="[feat] 고객 정보 응답 DTO">
+      <option name="closed" value="true" />
+      <created>1723176167428</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1723176167428</updated>
+    </task>
+    <task id="LOCAL-00027" summary="[feat] 전화번호 기반 고객 조회 API">
+      <option name="closed" value="true" />
+      <created>1723176181922</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1723176181922</updated>
+    </task>
+    <task id="LOCAL-00028" summary="[refactor] 응답 데이터 필드 수정&#10;posId -&gt; customerId">
+      <option name="closed" value="true" />
+      <created>1723176553599</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1723176553599</updated>
+    </task>
+    <task id="LOCAL-00029" summary="[feat] 매출 통계 엔티티 생성">
+      <option name="closed" value="true" />
+      <created>1723187132440</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1723187132440</updated>
+    </task>
+    <task id="LOCAL-00030" summary="[feat] 매출 통계 DTO 생성">
+      <option name="closed" value="true" />
+      <created>1723187140489</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1723187140489</updated>
+    </task>
+    <task id="LOCAL-00031" summary="[feat] 매출 통계 엔티티 생성">
+      <option name="closed" value="true" />
+      <created>1723187159620</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1723187159620</updated>
+    </task>
+    <task id="LOCAL-00032" summary="[feat] posId 조회 메서드 추가">
+      <option name="closed" value="true" />
+      <created>1723187177384</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1723187177384</updated>
+    </task>
+    <task id="LOCAL-00033" summary="[feat] 주문 생성 시 sales-statistics 정보 저장">
+      <option name="closed" value="true" />
+      <created>1723187204492</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1723187204492</updated>
+    </task>
+    <task id="LOCAL-00034" summary="[feat] 매출 통계 API 구현">
+      <option name="closed" value="true" />
+      <created>1723187214964</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1723187214964</updated>
+    </task>
+    <task id="LOCAL-00035" summary="[feat] 가장 오래된 주문일자 조회 API 구현">
+      <option name="closed" value="true" />
+      <created>1723187933999</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1723187933999</updated>
+    </task>
+    <task id="LOCAL-00036" summary="[chore] 오타 수정&#10;KIOSK -&gt; ORDER">
+      <option name="closed" value="true" />
+      <created>1723190180274</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1723190180274</updated>
+    </task>
+    <task id="LOCAL-00037" summary="[fix] 주문 상태 전환 로직 수정&#10;KIOSK -&gt; ORDER">
+      <option name="closed" value="true" />
+      <created>1723190202368</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1723190202368</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,10 +484,32 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[fix] Customer 클래스 테이블명 변경 &#10;order -&gt; customer" />
-    <MESSAGE value="[feat] 주문내역 상세 DTO 생성" />
-    <MESSAGE value="[feat] 특정 기간 내 주문내역 상세 조회 기능 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="[feat] 특정 기간 내 주문내역 상세 조회 기능 추가" />
+    <MESSAGE value="[feat] @Transactional" />
+    <MESSAGE value="[fix] 키오스크 메일 생성 시 영문 도메인으로 변경" />
+    <MESSAGE value="[fix] 키오스크 등록 API 이동" />
+    <MESSAGE value="[fix] 키오스크 등록 API 추가" />
+    <MESSAGE value="[chore] ddl-auto 설정&#10;create -&gt; update" />
+    <MESSAGE value="[feat] Pos -&gt; Kiosk 삭제 API 추가" />
+    <MESSAGE value="[fix] addSession 로직 수정&#10;현 토큰에서 ID를 추출해 key값으로 넣도록" />
+    <MESSAGE value="[feat] ws Permit" />
+    <MESSAGE value="[fix] Socket에서 토큰 받는 로직 수정" />
+    <MESSAGE value="[fix] 특정 기간 내 주문시 동일 posId의 주문건만 조회되도록 수정" />
+    <MESSAGE value="[fix] UUID 타입 Validation 어노테이션 변경&#10;NotEmpty -&gt; NotNull" />
+    <MESSAGE value="[refactor] reformat" />
+    <MESSAGE value="[refactor] 불필요한 setter 삭제&#10;setGender" />
+    <MESSAGE value="[feat] 전화번호 기반 고객 조회 예외 추가" />
+    <MESSAGE value="[feat] 고객 정보 응답 DTO" />
+    <MESSAGE value="[feat] 전화번호 기반 고객 조회 API" />
+    <MESSAGE value="[refactor] 응답 데이터 필드 수정&#10;posId -&gt; customerId" />
+    <MESSAGE value="[feat] 매출 통계 DTO 생성" />
+    <MESSAGE value="[feat] 매출 통계 엔티티 생성" />
+    <MESSAGE value="[feat] posId 조회 메서드 추가" />
+    <MESSAGE value="[feat] 주문 생성 시 sales-statistics 정보 저장" />
+    <MESSAGE value="[feat] 매출 통계 API 구현" />
+    <MESSAGE value="[feat] 가장 오래된 주문일자 조회 API 구현" />
+    <MESSAGE value="[chore] 오타 수정&#10;KIOSK -&gt; ORDER" />
+    <MESSAGE value="[fix] 주문 상태 전환 로직 수정&#10;KIOSK -&gt; ORDER" />
+    <option name="LAST_COMMIT_MESSAGE" value="[fix] 주문 상태 전환 로직 수정&#10;KIOSK -&gt; ORDER" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
